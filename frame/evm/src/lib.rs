@@ -641,10 +641,12 @@ where
 			let refund_imbalance = C::deposit_into_existing(&account_id, refund_amount)
 				.unwrap_or_else(|_| C::PositiveImbalance::zero());
 			// merge the imbalance caused by paying the fees and refunding parts of it again.
-			let adjusted_paid = paid
-				.offset(refund_imbalance)
-				.map_err(|_| Error::<T>::BalanceLow)?;
-			OU::on_unbalanced(adjusted_paid);
+			match paid.offset(refund_imbalance).try_same() {
+				Ok(adjusted) => {
+					OU::on_unbalanced(adjusted)
+				},
+				Err(_) => {},
+			}
 		}
 		Ok(())
 	}
