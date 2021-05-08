@@ -5964,7 +5964,6 @@ dependencies = [
  "sp-runtime",
  "sp-session",
  "sp-state-machine",
- "sp-tracing",
  "sp-transaction-pool",
  "sp-utils",
  "sp-version",
@@ -5990,7 +5989,6 @@ dependencies = [
  "sp-core",
  "sp-rpc",
  "sp-runtime",
- "sp-tracing",
  "sp-transaction-pool",
  "sp-version",
 ]
@@ -6126,26 +6124,16 @@ dependencies = [
  "parking_lot 0.11.1",
  "regex",
  "rustc-hash",
- "sc-client-api",
- "sc-rpc-server",
- "sc-telemetry",
  "sc-tracing-proc-macro",
  "serde",
  "serde_json",
- "sp-api",
- "sp-block-builder",
- "sp-blockchain",
- "sp-core",
- "sp-rpc",
- "sp-runtime",
- "sp-storage",
  "sp-tracing",
  "thiserror",
  "tracing",
+ "tracing-core",
  "tracing-log",
  "tracing-subscriber",
  "wasm-bindgen",
- "wasm-timer",
  "web-sys",
 ]
 
@@ -6491,15 +6479,6 @@ name = "slab"
 version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f173ac3d1a7e3b28003f40de0b5ce7fe2710f9b9dc3fc38664cebee46b3b6527"
-
-[[package]]
-name = "slog"
-version = "2.7.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8347046d4ebd943127157b94d63abb990fcf729dc4e9978927fdf4ac3c998d06"
-dependencies = [
- "erased-serde",
-]
 
 [[package]]
 name = "smallvec"
@@ -6966,10 +6945,8 @@ name = "sp-rpc"
 version = "3.0.0"
 source = "git+https://github.com/paritytech/substrate.git?branch=master#a8ada8a654a1e50d855345d07f5f8f8cbce0a818"
 dependencies = [
- "rustc-hash",
  "serde",
  "sp-core",
- "tracing-core",
 ]
 
 [[package]]
@@ -7072,7 +7049,6 @@ dependencies = [
  "sp-std",
  "sp-trie",
  "thiserror",
- "tracing",
  "trie-db",
  "trie-root",
 ]
@@ -7130,13 +7106,8 @@ name = "sp-tracing"
 version = "3.0.0"
 source = "git+https://github.com/paritytech/substrate.git?branch=master#a8ada8a654a1e50d855345d07f5f8f8cbce0a818"
 dependencies = [
- "erased-serde",
  "log",
  "parity-scale-codec",
- "parking_lot 0.10.2",
- "serde",
- "serde_json",
- "slog",
  "sp-std",
  "tracing",
  "tracing-core",
