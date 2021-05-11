@@ -39,7 +39,7 @@ type FullClient = sc_service::TFullClient<Block, RuntimeApi, Executor>;
 type FullBackend = sc_service::TFullBackend<Block>;
 type FullSelectChain = sc_consensus::LongestChain<FullBackend, Block>;
 
-#[cfg(feature = "aura")]
+#[cfg(all(not(feature = "manual-seal"), feature = "aura"))]
 pub type ConsensusResult = (
 	sc_consensus_aura::AuraBlockImport<
 		Block,
@@ -151,7 +151,7 @@ pub fn new_partial(config: &Configuration, #[allow(unused_variables)] cli: &Cli)
 		})
 	}
 
-	#[cfg(feature = "aura")] {
+	#[cfg(all(not(feature = "manual-seal"), feature = "aura"))] {
 		let (grandpa_block_import, grandpa_link) = sc_finality_grandpa::block_import(
 			client.clone(),
 			&(client.clone() as Arc<_>),
@@ -397,7 +397,7 @@ pub fn new_full(
 		log::info!("Manual Seal Ready");
 	}
 
-	#[cfg(feature = "aura")] {
+	#[cfg(all(not(feature = "manual-seal"), feature = "aura"))]	{
 		let (aura_block_import, grandpa_link) = consensus_result;
 
 		if role.is_authority() {
@@ -497,7 +497,7 @@ pub fn new_full(
 	Ok(task_manager)
 }
 
-#[cfg(feature = "aura")]
+#[cfg(all(not(feature = "manual-seal"), feature = "aura"))]
 pub fn new_light(config: Configuration) -> Result<TaskManager, ServiceError> {
 	let telemetry = config.telemetry_endpoints.clone()
 		.filter(|x| !x.is_empty())
