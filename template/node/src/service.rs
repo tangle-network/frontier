@@ -57,12 +57,6 @@ pub type ConsensusResult = (
 #[cfg(feature = "manual-seal")]
 pub type ConsensusResult = (FrontierBlockImport<Block, Arc<FullClient>, FullClient>, Sealing);
 
-/// Provide a mock duration starting at 0 in millisecond for timestamp inherent.
-/// Each call will increment timestamp by slot_duration making Aura think time has passed.
-pub struct MockTimestampInherentDataProvider;
-
-pub const INHERENT_IDENTIFIER: InherentIdentifier = *b"timstap0";
-
 thread_local!(static TIMESTAMP: RefCell<u64> = RefCell::new(0));
 
 pub fn open_frontier_backend(config: &Configuration) -> Result<Arc<fc_db::Backend<Block>>, String> {
