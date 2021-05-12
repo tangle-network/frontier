@@ -23,3 +23,9 @@ members = [
 	"template/runtime",
 	"template/test-utils/client",
 ]
+
+[patch.crates-io]
+# evm = { git = "https://github.com/hicommonwealth/evm.git", commit = "936526cc09e4b640c0217b8acf5a1f4d37b18a8e" }
+# evm-core = { git = "https://github.com/hicommonwealth/evm.git", commit = "936526cc09e4b640c0217b8acf5a1f4d37b18a8e" }
+# evm-runtime = { git = "https://github.com/hicommonwealth/evm.git", commit = "936526cc09e4b640c0217b8acf5a1f4d37b18a8e" }
+# evm-gasometer = { git = "https://github.com/hicommonwealth/evm.git", commit = "936526cc09e4b640c0217b8acf5a1f4d37b18a8e" }

@@ -20,18 +20,21 @@ describeWithFrontier("Frontier RPC (Contract Methods)", (context) => {
 
 	before("create the contract", async function () {
 		this.timeout(15000);
+		let bytecodeWithParameters = TEST_CONTRACT_BYTECODE + context.web3.eth.abi.encodeParameters(['uint'], ['0']).slice(2);
 		const tx = await context.web3.eth.accounts.signTransaction(
 			{
 				from: GENESIS_ACCOUNT,
-				data: TEST_CONTRACT_BYTECODE,
+				data: bytecodeWithParameters,
 				value: "0x00",
 				gasPrice: "0x01",
-				gas: "0x100000",
+				gas: "0x10000000",
 			},
 			GENESIS_ACCOUNT_PRIVATE_KEY
 		);
 		await customRequest(context.web3, "eth_sendRawTransaction", [tx.rawTransaction]);
 		await createAndFinalizeBlock(context.web3);
+		let receipt = await context.web3.eth.getTransactionReceipt(tx.transactionHash);
+		console.log(receipt);
 	});
 
 	it("get transaction by hash", async () => {
@@ -61,28 +64,29 @@ describeWithFrontier("Frontier RPC (Contract Methods)", (context) => {
 		// 		expect(err.message).to.equal(`Returned error: VM Exception while processing transaction: revert.`)
 		// 	);
 
-	    let startNonce = await web3.eth.getTransactionCount(FIRST_CONTRACT_ADDRESS);
-	    console.log('Start nonce', startNonce);
-	    expect(startNonce).to.equal(0, 'start nonce of deployed contract should be 0');
+		let startNonce = await web3.eth.getTransactionCount(FIRST_CONTRACT_ADDRESS);
+		console.log('Start nonce', startNonce);
+		expect(startNonce).to.equal(1, 'start nonce of deployed contract should be 1');
 
-	    let senderBalance = new BN(await web3.eth.getBalance(GENESIS_ACCOUNT));
+		let senderBalance = new BN(await web3.eth.getBalance(GENESIS_ACCOUNT));
+		console.log(`Sender ${GENESIS_ACCOUNT} balance ${senderBalance.toString()}`);
 
-	    const bcontractAddr1 = getContractAddress(FIRST_CONTRACT_ADDRESS, startNonce);
-	    const bcontractAddr2 = getContractAddress(FIRST_CONTRACT_ADDRESS, startNonce + 1)
-	    const bcontractAddr3 = getContractAddress(FIRST_CONTRACT_ADDRESS, startNonce + 2);
-	    const bcontractAddr4 = getContractAddress(FIRST_CONTRACT_ADDRESS, startNonce + 3);
+		const bcontractAddr1 = getContractAddress(FIRST_CONTRACT_ADDRESS, startNonce);
+		const bcontractAddr2 = getContractAddress(FIRST_CONTRACT_ADDRESS, startNonce + 1)
+		const bcontractAddr3 = getContractAddress(FIRST_CONTRACT_ADDRESS, startNonce + 2);
+		const bcontractAddr4 = getContractAddress(FIRST_CONTRACT_ADDRESS, startNonce + 3);
 
-	    const value = web3.utils.toWei('10', 'ether');
+		const value = web3.utils.toWei('10', 'ether');
 
-	    let before_nonce = await web3.eth.getTransactionCount(FIRST_CONTRACT_ADDRESS);
-	    console.log('Before lock nonce', before_nonce);
+		let before_nonce = await web3.eth.getTransactionCount(FIRST_CONTRACT_ADDRESS);
+		console.log('Before lock nonce', FIRST_CONTRACT_ADDRESS, before_nonce);
 
 		const data = contract.methods.lock(THREE_MONTHS, GENESIS_ACCOUNT, true).encodeABI();
 		const tx = await context.web3.eth.accounts.signTransaction(
 			{
 				to: FIRST_CONTRACT_ADDRESS,
 				data: data,
-				value: "0x10",
+				value,
 				gasPrice: "0x01",
 				gas: "0x100000",
 			},
@@ -110,7 +114,8 @@ describeWithFrontier("Frontier RPC (Contract Methods)", (context) => {
 	    //   gasPrice: 1000,
 	    // });
 	    let after_nonce = await web3.eth.getTransactionCount(FIRST_CONTRACT_ADDRESS);
-	    console.log('After lock nonce', after_nonce);
+	    console.log('After lock nonce', FIRST_CONTRACT_ADDRESS, after_nonce);
+	    expect(after_nonce).to.equal(2, 'contract nonce of Lockdrop contract should be 2 after lock')
 
 	    let balLock1 = await web3.eth.getBalance(bcontractAddr1);
 	    let balLock2 = await web3.eth.getBalance(bcontractAddr2);
@@ -118,19 +123,15 @@ describeWithFrontier("Frontier RPC (Contract Methods)", (context) => {
 	    let balLock4 = await web3.eth.getBalance(bcontractAddr4);
 
 	    expect(value.toString()).to.equal(balLock1, 'balance of first lock does not match expected');
-	    expect(0).to.equal(balLock2, 'balance of future second lock does not match expected');
-	    expect(0).to.equal(balLock3, 'balance of future third lock does not match expected');
-	    expect(0).to.equal(balLock4, 'balance of future fourth lock does not match expected');
+	    expect('0').to.equal(balLock2, 'balance of future second lock does not match expected');
+	    expect('0').to.equal(balLock3, 'balance of future third lock does not match expected');
+	    expect('0').to.equal(balLock4, 'balance of future fourth lock does not match expected');
 
 	    let senderBalanceAfter = new BN(await web3.eth.getBalance(GENESIS_ACCOUNT));
 	    let sentBalance = senderBalance.sub(senderBalanceAfter);
-	    expect(sentBalance).to.be.gt(new BN(value), 'sent balance should be greater than lock value');
+	    expect(sentBalance.gt(new BN(value))).to.equal(true, 'sent balance should be greater than lock value');
 
-	    const nonce = await web3.eth.getTransactionCount(FIRST_CONTRACT_ADDRESS);
-	    console.log('Second nonce', nonce);
-	    const contractAddr = getContractAddress(FIRST_CONTRACT_ADDRESS, nonce);
-	    expect(nonce).to.equal(1, 'contract nonce of Lockdrop contract should be 1 after lock')
-
+	    const contractAddr = getContractAddress(FIRST_CONTRACT_ADDRESS, after_nonce);
 	    const bal0 = await web3.eth.getBalance(contractAddr);
 
 	    expect(bal0).to.equal(value, 'Lock value at address should be 10 eth after lock');
@@ -160,7 +161,7 @@ describeWithFrontier("Frontier RPC (Contract Methods)", (context) => {
 	    const bal2 = await context.web3.eth.getBalance(new_contractAddr);
 
 	    expect(bal2).to.equal(value2, '2nd lock value should be non zero after lock');
-	    expect(new_nonce - 1).to.equal(nonce, 'nonce should increment');
+	    expect(new_nonce - 1).to.equal(after_nonce, 'nonce should increment');
 
 	    balLock1 = await context.web3.eth.getBalance(bcontractAddr1);
 	    balLock2 = await context.web3.eth.getBalance(bcontractAddr2);

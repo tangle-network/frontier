@@ -1,4 +1,5 @@
 import Web3 from "web3";
+import { ApiPromise, WsProvider } from "@polkadot/api";
 import { JsonRpcResponse } from "web3-core-helpers";
 import { spawn, ChildProcess } from "child_process";
 
@@ -61,11 +62,13 @@ export async function startFrontierNode(provider?: string): Promise<{ web3: Web3
 		`--no-grandpa`,
 		`--force-authoring`,
 		`-l${FRONTIER_LOG}`,
+		`-levm=debug`,
 		`--port=${PORT}`,
 		`--rpc-port=${RPC_PORT}`,
 		`--ws-port=${WS_PORT}`,
 		`--tmp`,
 	];
+	console.log('Spawning binary');
 	const binary = spawn(cmd, args);
 
 	binary.on("error", (err) => {
@@ -124,16 +127,41 @@ export function describeWithFrontier(title: string, cb: (context: { web3: Web3 }
 	describe(title, () => {
 		let context: { web3: Web3 } = { web3: null };
 		let binary: ChildProcess;
+		let api: ApiPromise;
 		// Making sure the Frontier node has started
 		before("Starting Frontier Test Node", async function () {
 			this.timeout(SPAWNING_TIME);
 			const init = await startFrontierNode(provider);
 			context.web3 = init.web3;
 			binary = init.binary;
+			console.log('Starting Polkadot API');
+			api = await ApiPromise.create({
+				provider: new WsProvider(`ws://localhost:${WS_PORT}`)
+			});
+			api.query.system.events((events) => {
+				console.log(`\nReceived ${events.length} events:`);
+		
+				// Loop through the Vec<EventRecord>
+				events.forEach((record) => {
+					// Extract the phase, event and the event types
+					const { event, phase } = record;
+					const types = event.typeDef;
+		
+					// Show what we are busy with
+					console.log(`\t${event.section}:${event.method}:: (phase=${phase.toString()})`);
+					console.log(`\t\t${event.meta.documentation.toString()}`);
+		
+					// Loop through each of the parameters, displaying the type and data
+					event.data.forEach((data, index) => {
+						console.log(`\t\t\t${types[index].type}: ${data.toString()}`);
+					});
+				});
+			});
 		});
 
 		after(async function () {
 			//console.log(`\x1b[31m Killing RPC\x1b[0m`);
+			await api.disconnect();
 			binary.kill();
 		});
 
