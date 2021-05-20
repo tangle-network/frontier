@@ -42,6 +42,8 @@ sc-consensus = { git = "https://github.com/webb-tools/substrate.git", branch = "
 sp-timestamp = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
 pallet-evm = { path = "../../frame/evm" }
 pallet-ethereum = { path = "../../frame/ethereum" }
+pallet-dynamic-fee = { path = "../../frame/dynamic-fee" }
+
 sc-finality-grandpa = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
 sp-finality-grandpa = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
 sc-client-api = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
@@ -49,6 +51,7 @@ sp-runtime = { git = "https://github.com/webb-tools/substrate.git", branch = "er
 sc-basic-authorship = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
 sp-block-builder = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
 sc-telemetry = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
+
 
 fc-consensus = { path = "../../client/consensus" }
 fp-consensus = { path = "../../primitives/consensus" }

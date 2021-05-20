@@ -51,6 +51,27 @@ pub mod pallet {
 	#[pallet::getter(fn min_gas_price)]
 	pub type MinGasPrice<T: Config> = StorageValue<_, U256, ValueQuery>;
 
+	#[pallet::genesis_config]
+	pub struct GenesisConfig {
+		pub gas_price: U256,
+	}
+
+	#[cfg(feature = "std")]
+	impl Default for GenesisConfig {
+		fn default() -> Self {
+			Self {
+				gas_price: U256::from(1),
+			}
+		}
+	}
+
+	#[pallet::genesis_build]
+	impl<T: Config> GenesisBuild<T> for GenesisConfig {
+		fn build(&self) {
+			MinGasPrice::<T>::set(U256::from(1));
+		}
+	}
+
 	#[pallet::event]
 	#[pallet::generate_deposit(pub(super) fn deposit_event)]
 	pub enum Event<T: Config> {
@@ -114,6 +135,12 @@ pub mod pallet {
 	}
 }
 
+impl<T: Config> pallet_evm::FeeCalculator for Pallet<T> {
+	fn min_gas_price() -> U256 {
+		MinGasPrice::<T>::get()
+	}
+}
+
 #[derive(Encode, Decode, RuntimeDebug)]
 pub enum InherentError { }
 
@@ -123,5 +150,52 @@ impl IsFatalError for InherentError {
 	}
 }
 
+impl InherentError {
+	/// Try to create an instance ouf of the given identifier and data.
+	#[cfg(feature = "std")]
+	pub fn try_from(id: &InherentIdentifier, data: &[u8]) -> Option<Self> {
+		if id == &INHERENT_IDENTIFIER {
+			<InherentError as codec::Decode>::decode(&mut &data[..]).ok()
+		} else {
+			None
+		}
+	}
+}
+
 pub const INHERENT_IDENTIFIER: InherentIdentifier = *b"dynfee0_";
 pub type InherentType = U256;
+
+
+#[cfg(feature = "std")]
+pub struct InherentDataProvider(pub InherentType);
+
+#[cfg(feature = "std")]
+#[async_trait::async_trait]
+impl sp_inherents::InherentDataProvider for InherentDataProvider {
+	fn provide_inherent_data(
+		&self,
+		inherent_data: &mut InherentData
+	) -> Result<(), sp_inherents::Error> {
+		inherent_data.put_data(INHERENT_IDENTIFIER, &self.0)
+	}
+
+	async fn try_handle_error(
+		&self,
+		identifier: &InherentIdentifier,
+		error: &[u8],
+	) -> Option<Result<(), sp_inherents::Error>> {
+		if *identifier != INHERENT_IDENTIFIER {
+			return None
+		}
+
+		match InherentError::try_from(&INHERENT_IDENTIFIER, error) {
+			Some(err) => {
+				let error_string: &str = &format!("{:?}", err).to_owned();
+				let error = sp_inherents::Error::Application(Box::from(error_string));
+				Some(Err(error))
+			},
+			None => None,
+		}
+	}
+}
+

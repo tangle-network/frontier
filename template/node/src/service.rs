@@ -1,7 +1,5 @@
 //! Service and ServiceFactory implementation. Specialized wrapper over substrate service.
 use sp_consensus::SlotData;
-use sp_inherents::InherentIdentifier;
-use sp_inherents::InherentData;
 use std::{sync::{Arc, Mutex}, cell::RefCell, time::Duration, collections::{HashMap, BTreeMap}};
 use fc_rpc::EthTask;
 use fc_rpc_core::types::{FilterPool, PendingTransactions};
@@ -10,19 +8,20 @@ use sc_client_api::{ExecutorProvider, RemoteBackend, BlockchainEvents};
 use sc_consensus_manual_seal::{self as manual_seal};
 use fc_consensus::FrontierBlockImport;
 use fc_mapping_sync::MappingSyncWorker;
-use frontier_template_runtime::{self, opaque::Block, RuntimeApi, SLOT_DURATION};
+use frontier_template_runtime::{self, opaque::Block, RuntimeApi};
 use sc_service::{error::Error as ServiceError, Configuration, TaskManager, BasePath};
 use sc_executor::native_executor_instance;
 pub use sc_executor::NativeExecutor;
 use sc_consensus_aura::{ImportQueueParams, StartAuraParams, SlotProportion};
 use sp_consensus_aura::sr25519::{AuthorityPair as AuraPair};
 use sc_finality_grandpa::SharedVoterState;
-use sp_timestamp::InherentError;
+
 use sc_telemetry::{Telemetry, TelemetryWorker};
 use sc_cli::SubstrateCli;
 use futures::StreamExt;
-use sc_consensus_aura::slot_duration;
-use sc_finality_grandpa::block_import;
+
+
+use sp_core::U256;
 
 use crate::cli::Cli;
 #[cfg(feature = "manual-seal")]
@@ -123,6 +122,8 @@ pub fn new_partial(config: &Configuration, #[allow(unused_variables)] cli: &Cli)
 
 	let frontier_backend = open_frontier_backend(config)?;
 
+	let target_gas_price = U256::from(cli.run.target_gas_price);
+
 	#[cfg(feature = "manual-seal")] {
 		let sealing = cli.run.sealing;
 
@@ -186,7 +187,9 @@ pub fn new_partial(config: &Configuration, #[allow(unused_variables)] cli: &Cli)
 							raw_slot_duration,
 						);
 
-					Ok((timestamp, slot))
+					let fee = pallet_dynamic_fee::InherentDataProvider(target_gas_price);
+
+					Ok((timestamp, slot, fee))
 				},
 				spawner: &task_manager.spawn_essential_handle(),
 				can_author_with: sp_consensus::CanAuthorWithNativeVersion::new(client.executor().clone()),
@@ -216,6 +219,7 @@ pub fn new_full(
 	cli: &Cli,
 ) -> Result<TaskManager, ServiceError> {
 	let enable_dev_signer = cli.run.enable_dev_signer;
+	let target_gas_price = U256::from(cli.run.target_gas_price);
 
 	let sc_service::PartialComponents {
 		client, backend, mut task_manager, import_queue, keystore_container,
@@ -364,8 +368,8 @@ pub fn new_full(
 							consensus_data_provider: None,
 							create_inherent_data_providers: move |_, ()| async move {
 								let timestamp = sp_timestamp::InherentDataProvider::from_system_time();
-
-								Ok((timestamp, ()))
+								let fee = pallet_dynamic_fee::InherentDataProvider(target_gas_price);
+								Ok((timestamp, (), fee))
 							},
 						}
 					);
@@ -383,8 +387,8 @@ pub fn new_full(
 							consensus_data_provider: None,
 							create_inherent_data_providers: move |_, ()| async move {
 								let timestamp = sp_timestamp::InherentDataProvider::from_system_time();
-
-								Ok((timestamp, ()))
+								let fee = pallet_dynamic_fee::InherentDataProvider(target_gas_price);
+								Ok((timestamp, (), fee))
 							},
 						}
 					);
@@ -431,7 +435,9 @@ pub fn new_full(
 								raw_slot_duration,
 							);
 
-						Ok((timestamp, slot))
+						let fee = pallet_dynamic_fee::InherentDataProvider(target_gas_price);
+
+						Ok((timestamp, slot, fee))
 					},
 					force_authoring,
 					backoff_authoring_blocks,
