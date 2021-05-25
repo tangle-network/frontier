@@ -32,17 +32,27 @@ pub fn sync_block<Block: BlockT>(
 	header: &Block::Header,
 ) -> Result<(), String> {
 	match fp_consensus::find_log(header.digest()) {
-		Ok(log) => {
-			let post_hashes = log.into_hashes();
+		Ok(maybe_log) => {
+			match maybe_log {
+				Some(log) => {
+					let post_hashes = log.into_hashes();
 
-			let mapping_commitment = fc_db::MappingCommitment {
-				block_hash: header.hash(),
-				ethereum_block_hash: post_hashes.block_hash,
-				ethereum_transaction_hashes: post_hashes.transaction_hashes,
-			};
-			backend.mapping().write_hashes(mapping_commitment)?;
+					let mapping_commitment = fc_db::MappingCommitment {
+						block_hash: header.hash(),
+						ethereum_block_hash: post_hashes.block_hash,
+						ethereum_transaction_hashes: post_hashes.transaction_hashes,
+					};
+					backend.mapping().write_hashes(mapping_commitment)?;
 
-			Ok(())
+					Ok(())
+				},
+				// match implementation with Err(findLogError::NotFound) belows
+				None => {
+					backend.mapping().write_none(header.hash())?;
+
+					Ok(())
+				},
+			}
 		},
 		Err(FindLogError::NotFound) => {
 			backend.mapping().write_none(header.hash())?;

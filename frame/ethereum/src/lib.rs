@@ -166,12 +166,17 @@ decl_module! {
 		fn on_initialize(n: T::BlockNumber) -> Weight {
 			Pending::kill();
 
-			if let Ok(log) = fp_consensus::find_pre_log(&frame_system::Pallet::<T>::digest()) {
-				let PreLog::Block(block) = log;
+			if let Ok(maybe_log) = fp_consensus::find_pre_log(&frame_system::Pallet::<T>::digest()) {
+				match maybe_log {
+					Some(log) => {
+						let PreLog::Block(block) = log;
 
-				for transaction in block.transactions {
-					Self::do_transact(transaction)
-						.expect("pre-block transaction verification failed; the block cannot be built");
+						for transaction in block.transactions {
+							Self::do_transact(transaction)
+								.expect("pre-block transaction verification failed; the block cannot be built");
+						}
+					},
+					None => {}
 				}
 			}
 
