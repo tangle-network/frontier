@@ -22,9 +22,13 @@ use codec::{Encode, Decode};
 use sp_std::{result, cmp::{min, max}};
 use sp_runtime::RuntimeDebug;
 use sp_core::U256;
-use sp_inherents::{InherentIdentifier, InherentData, IsFatalError};
-use frame_support::{traits::Get};
-
+use sp_inherents::{InherentIdentifier, InherentData, ProvideInherent, IsFatalError};
+#[cfg(feature = "std")]
+use sp_inherents::ProvideInherentData;
+use frame_support::{
+	decl_module, decl_storage, decl_event,
+	traits::Get, weights::Weight,
+};
 use frame_system::ensure_none;
 pub use pallet::*;
 
@@ -43,13 +47,10 @@ pub mod pallet {
 		type MinGasPriceBoundDivisor: Get<U256>;
 	}
 
-	#[pallet::storage]
-	#[pallet::getter(fn target_min_gas_price)]
-	pub type TargetMinGasPrice<T: Config> = StorageValue<_, Option<U256>, ValueQuery>;
-
-	#[pallet::storage]
-	#[pallet::getter(fn min_gas_price)]
-	pub type MinGasPrice<T: Config> = StorageValue<_, U256, ValueQuery>;
+pub trait Config: frame_system::Config {
+	/// Bound divisor for min gas price.
+	type MinGasPriceBoundDivisor: Get<U256>;
+}
 
 	#[pallet::genesis_config]
 	pub struct GenesisConfig {
@@ -65,22 +66,13 @@ pub mod pallet {
 		}
 	}
 
-	#[pallet::genesis_build]
-	impl<T: Config> GenesisBuild<T> for GenesisConfig {
-		fn build(&self) {
-			MinGasPrice::<T>::set(U256::from(1));
+decl_module! {
+	pub struct Module<T: Config> for enum Call where origin: T::Origin {
+		fn on_initialize(_block_number: T::BlockNumber) -> Weight {
+			TargetMinGasPrice::kill();
+
+			T::DbWeight::get().writes(1)
 		}
-	}
-
-	#[pallet::event]
-	#[pallet::generate_deposit(pub(super) fn deposit_event)]
-	pub enum Event<T: Config> {
-		TargetMinGasPriceSet(U256)
-	}
-
-	#[pallet::pallet]
-	#[pallet::generate_store(pub(super) trait Store)]
-	pub struct Pallet<T>(PhantomData<T>);
 
 	#[pallet::hooks]
 	impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
@@ -93,44 +85,17 @@ pub mod pallet {
 
 				MinGasPrice::<T>::set(min(upper_limit, max(lower_limit, target)));
 			}
-
-			TargetMinGasPrice::<T>::kill();
 		}
 	}
 
-	#[pallet::call]
-	impl<T: Config> Pallet<T> {
-		#[pallet::weight(0)]
+		#[weight = T::DbWeight::get().writes(1)]
 		fn note_min_gas_price_target(
 			origin: OriginFor<T>,
 			target: U256,
 		) -> DispatchResultWithPostInfo {
 			ensure_none(origin)?;
 
-			TargetMinGasPrice::<T>::set(Some(target));
-			Self::deposit_event(Event::TargetMinGasPriceSet(target));
-			Ok(().into())
-		}
-	}
-
-	#[pallet::inherent]
-	impl<T: Config> ProvideInherent for Pallet<T> {
-		type Call = Call<T>;
-		type Error = InherentError;
-		const INHERENT_IDENTIFIER: InherentIdentifier = INHERENT_IDENTIFIER;
-
-		fn create_inherent(data: &InherentData) -> Option<Self::Call> {
-			let target = data.get_data::<InherentType>(&INHERENT_IDENTIFIER).ok()??;
-
-			Some(Call::note_min_gas_price_target(target))
-		}
-
-		fn check_inherent(_call: &Self::Call, _data: &InherentData) -> result::Result<(), Self::Error> {
-			Ok(())
-		}
-
-		fn is_inherent(call: &Self::Call) -> bool {
-			matches!(call, Call::note_min_gas_price_target(_))
+			TargetMinGasPrice::set(Some(target));
 		}
 	}
 }
