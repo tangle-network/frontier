@@ -9,11 +9,11 @@ publish = false
 
 [dependencies]
 codec = { package = "parity-scale-codec", version = "2.0.0" }
-sp-runtime = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-sp-api = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-sc-executor = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-sc-light = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-sc-consensus = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-sc-client-api = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-substrate-test-client = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
+sp-runtime = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-up" }
+sp-api = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-up" }
+sc-executor = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-up" }
+sc-light = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-up" }
+sc-consensus = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-up" }
+sc-client-api = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-up" }
+substrate-test-client = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-up" }
 frontier-template-runtime = { path = "../../runtime" }
