@@ -1072,21 +1072,17 @@ where
 	}
 
 	fn transaction_receipt(&self, hash: H256) -> Result<Option<Receipt>> {
-		let result =
-			frontier_backend_client::load_transactions::<B, C>(self.client.as_ref(), self.backend.as_ref(), hash)
-				.map_err(|err| internal_err(format!("{:?}", err)))?;
+		let (hash, index) =
+			match frontier_backend_client::load_transactions::<B, C>(self.client.as_ref(), self.backend.as_ref(), hash)
+				.map_err(|err| internal_err(format!("{:?}", err)))?
+			{
+				Some((hash, index)) => (hash, index as usize),
+				None => return Ok(None),
+			};
 
-		log::trace!(target: "evm", "Load Transaction Result {:?}", result);
-		let (hash, index) = match result {
-			Some((hash, index)) => (hash, index as usize),
-			None => return Ok(None),
-		};
-
-		let result = frontier_backend_client::load_hash::<B>(self.backend.as_ref(), hash)
-			.map_err(|err| internal_err(format!("{:?}", err)))?;
-
-		log::trace!(target: "evm", "Load Hash Result {:?}", result);
-		let id = match result {
+		let id = match frontier_backend_client::load_hash::<B>(self.backend.as_ref(), hash)
+			.map_err(|err| internal_err(format!("{:?}", err)))?
+		{
 			Some(hash) => hash,
 			_ => return Ok(None),
 		};
@@ -1102,7 +1098,7 @@ where
 				let block_hash = H256::from_slice(Keccak256::digest(&rlp::encode(&block.header)).as_slice());
 				let receipt = receipts[index].clone();
 				let status = statuses[index].clone();
-				let mut cumulative_receipts = receipts;
+				let mut cumulative_receipts = receipts.clone();
 				cumulative_receipts.truncate((status.transaction_index + 1) as usize);
 
 				return Ok(Some(Receipt {
@@ -1120,7 +1116,7 @@ where
 					contract_address: status.contract_address,
 					logs: {
 						let mut pre_receipts_log_index = None;
-						if !cumulative_receipts.is_empty() {
+						if cumulative_receipts.len() > 0 {
 							cumulative_receipts.truncate(cumulative_receipts.len() - 1);
 							pre_receipts_log_index =
 								Some(cumulative_receipts.iter().map(|r| r.logs.len() as u32).sum::<u32>());
