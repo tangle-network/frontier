@@ -1,5 +1,5 @@
 //! Service and ServiceFactory implementation. Specialized wrapper over substrate service.
-
+use sp_consensus::SlotData;
 use std::{sync::{Arc, Mutex}, cell::RefCell, time::Duration, collections::{HashMap, BTreeMap}};
 use fc_rpc::EthTask;
 use fc_rpc_core::types::{FilterPool, PendingTransactions};
@@ -8,17 +8,19 @@ use sc_client_api::{ExecutorProvider, RemoteBackend, BlockchainEvents};
 use sc_consensus_manual_seal::{self as manual_seal};
 use fc_consensus::FrontierBlockImport;
 use fc_mapping_sync::MappingSyncWorker;
-use frontier_template_runtime::{self, opaque::Block, RuntimeApi, SLOT_DURATION};
+use frontier_template_runtime::{self, opaque::Block, RuntimeApi};
 use sc_service::{error::Error as ServiceError, Configuration, TaskManager, BasePath};
 use sc_executor::native_executor_instance;
 pub use sc_executor::NativeExecutor;
 use sc_consensus_aura::{ImportQueueParams, StartAuraParams, SlotProportion};
 use sp_consensus_aura::sr25519::{AuthorityPair as AuraPair};
 use sc_finality_grandpa::SharedVoterState;
-use sp_timestamp::InherentError;
+
 use sc_telemetry::{Telemetry, TelemetryWorker};
 use sc_cli::SubstrateCli;
 use futures::StreamExt;
+
+
 use sp_core::U256;
 use sp_consensus::SlotData;
 use sc_consensus_aura::slot_duration;
@@ -121,6 +123,8 @@ pub fn new_partial(config: &Configuration, #[allow(unused_variables)] cli: &Cli)
 		= Some(Arc::new(Mutex::new(BTreeMap::new())));
 
 	let frontier_backend = open_frontier_backend(config)?;
+
+	let target_gas_price = U256::from(cli.run.target_gas_price);
 
 	#[cfg(feature = "manual-seal")] {
 		let sealing = cli.run.sealing;
@@ -295,17 +299,23 @@ pub fn new_full(
 		).for_each(|()| futures::future::ready(()))
 	);
 
-	let _rpc_handlers = sc_service::spawn_tasks(sc_service::SpawnTasksParams {
-		network: network.clone(),
-		client: client.clone(),
-		keystore: keystore_container.sync_keystore(),
-		task_manager: &mut task_manager,
-		transaction_pool: transaction_pool.clone(),
-		rpc_extensions_builder: rpc_extensions_builder,
-		on_demand: None,
-		remote_blockchain: None,
-		backend, network_status_sinks, system_rpc_tx, config, telemetry: telemetry.as_mut(),
-	})?;
+	let _rpc_handlers = sc_service::spawn_tasks(
+		sc_service::SpawnTasksParams {
+			network: network.clone(),
+			client: client.clone(),
+			keystore: keystore_container.sync_keystore(),
+			task_manager: &mut task_manager,
+			transaction_pool: transaction_pool.clone(),
+			rpc_extensions_builder,
+			on_demand: None,
+			remote_blockchain: None,
+			backend,
+			network_status_sinks,
+			system_rpc_tx,
+			config,
+			telemetry: telemetry.as_mut(),
+		},
+	)?;
 
 	// Spawn Frontier EthFilterApi maintenance task.
 	if let Some(filter_pool) = filter_pool {
@@ -358,7 +368,11 @@ pub fn new_full(
 							commands_stream,
 							select_chain,
 							consensus_data_provider: None,
-							inherent_data_providers,
+							create_inherent_data_providers: move |_, ()| async move {
+								let timestamp = sp_timestamp::InherentDataProvider::from_system_time();
+								let fee = pallet_dynamic_fee::InherentDataProvider(target_gas_price);
+								Ok((timestamp, (), fee))
+							},
 						}
 					);
 					// we spawn the future on a background thread managed by service.
@@ -373,7 +387,11 @@ pub fn new_full(
 							pool: transaction_pool.pool().clone(),
 							select_chain,
 							consensus_data_provider: None,
-							inherent_data_providers,
+							create_inherent_data_providers: move |_, ()| async move {
+								let timestamp = sp_timestamp::InherentDataProvider::from_system_time();
+								let fee = pallet_dynamic_fee::InherentDataProvider(target_gas_price);
+								Ok((timestamp, (), fee))
+							},
 						}
 					);
 					// we spawn the future on a background thread managed by service.
@@ -389,7 +407,7 @@ pub fn new_full(
 		let (aura_block_import, grandpa_link) = consensus_result;
 
 		if role.is_authority() {
-			let proposer = sc_basic_authorship::ProposerFactory::new(
+			let proposer_factory = sc_basic_authorship::ProposerFactory::new(
 				task_manager.spawn_handle(),
 				client.clone(),
 				transaction_pool.clone(),
@@ -409,7 +427,7 @@ pub fn new_full(
 					client: client.clone(),
 					select_chain,
 					block_import: aura_block_import,
-					proposer_factory: proposer,
+					proposer_factory,
 					create_inherent_data_providers: move |_, ()| async move {
 						let timestamp = sp_timestamp::InherentDataProvider::from_system_time();
 
@@ -601,6 +619,6 @@ pub fn new_light(config: Configuration) -> Result<TaskManager, ServiceError> {
 }
 
 #[cfg(feature = "manual-seal")]
-pub fn new_light(config: Configuration) -> Result<TaskManager, ServiceError> {
+pub fn new_light(_config: Configuration) -> Result<TaskManager, ServiceError> {
 	return Err(ServiceError::Other("Manual seal does not support light client".to_string()))
 }

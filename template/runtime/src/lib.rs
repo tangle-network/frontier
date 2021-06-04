@@ -26,6 +26,7 @@ use sp_version::RuntimeVersion;
 #[cfg(feature = "std")]
 use sp_version::NativeVersion;
 use sp_core::crypto::Public;
+use sp_consensus_aura::SlotDuration;
 
 // A few exports that help ease life for downstream crates.
 #[cfg(any(feature = "std", test))]
@@ -45,7 +46,7 @@ pub use frame_support::{
 use sp_consensus_aura::SlotDuration;
 
 use pallet_evm::{
-	Account as EVMAccount, FeeCalculator, HashedAddressMapping,
+	Account as EVMAccount, HashedAddressMapping,
 	EnsureAddressTruncated, Runner,
 };
 use fp_rpc::TransactionStatus;
@@ -191,6 +192,7 @@ impl frame_system::Config for Runtime {
 	type SystemWeightInfo = ();
 	/// This is used as an identifier of the chain. 42 is the generic substrate prefix.
 	type SS58Prefix = SS58Prefix;
+	/// What to do if a new WASM runtime is set
 	type OnSetCode = ();
 }
 
@@ -274,7 +276,7 @@ parameter_types! {
 }
 
 impl pallet_evm::Config for Runtime {
-	type FeeCalculator = pallet_dynamic_fee::Module<Self>;
+	type FeeCalculator = pallet_dynamic_fee::Pallet<Self>;
 	type GasWeightMapping = ();
 	type CallOrigin = EnsureAddressTruncated;
 	type WithdrawOrigin = EnsureAddressTruncated;
@@ -317,7 +319,7 @@ impl pallet_ethereum::Config for Runtime {
 	type StateRoot = pallet_ethereum::IntermediateStateRoot;
 }
 
-frame_support::parameter_types! {
+parameter_types! {
 	pub BoundDivision: U256 = U256::from(1024);
 }
 
@@ -463,6 +465,7 @@ impl_runtime_apis! {
 		}
 	}
 
+
 	impl frame_system_rpc_runtime_api::AccountNonceApi<Block, AccountId, Index> for Runtime {
 		fn account_nonce(account: AccountId) -> Index {
 			System::account_nonce(account)
@@ -487,7 +490,7 @@ impl_runtime_apis! {
 		}
 
 		fn author() -> H160 {
-			<pallet_ethereum::Module<Runtime>>::find_author()
+			<pallet_ethereum::Pallet<Runtime>>::find_author()
 		}
 
 		fn storage_at(address: H160, index: U256) -> H256 {

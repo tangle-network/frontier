@@ -90,7 +90,7 @@ pub enum FindLogError {
 
 pub fn find_pre_log<Hash>(
 	digest: &Digest<Hash>,
-) -> Result<PreLog, FindLogError> {
+) -> Result<Option<PreLog>, FindLogError> {
 	let mut found = None;
 
 	for log in digest.logs() {
@@ -102,12 +102,12 @@ pub fn find_pre_log<Hash>(
 		}
 	}
 
-	found.ok_or(FindLogError::NotFound)
+	Ok(found)
 }
 
 pub fn find_post_log<Hash>(
 	digest: &Digest<Hash>,
-) -> Result<PostLog, FindLogError> {
+) -> Result<Option<PostLog>, FindLogError> {
 	let mut found = None;
 
 	for log in digest.logs() {
@@ -119,12 +119,12 @@ pub fn find_post_log<Hash>(
 		}
 	}
 
-	found.ok_or(FindLogError::NotFound)
+	Ok(found)
 }
 
 pub fn find_log<Hash>(
 	digest: &Digest<Hash>,
-) -> Result<Log, FindLogError> {
+) -> Result<Option<Log>, FindLogError> {
 	let mut found = None;
 
 	for log in digest.logs() {
@@ -143,7 +143,7 @@ pub fn find_log<Hash>(
 		}
 	}
 
-	found.ok_or(FindLogError::NotFound)
+	Ok(found)
 }
 
 pub fn ensure_log<Hash>(
@@ -167,9 +167,5 @@ pub fn ensure_log<Hash>(
 		}
 	}
 
-	if found {
-		Ok(())
-	} else {
-		Err(FindLogError::NotFound)
-	}
+	Ok(())
 }

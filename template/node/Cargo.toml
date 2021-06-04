@@ -43,6 +43,7 @@ sp-timestamp = { git = "https://github.com/webb-tools/substrate.git", branch = "
 pallet-evm = { path = "../../frame/evm" }
 pallet-ethereum = { path = "../../frame/ethereum" }
 pallet-dynamic-fee = { path = "../../frame/dynamic-fee" }
+
 sc-finality-grandpa = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
 sp-finality-grandpa = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
 sc-client-api = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
