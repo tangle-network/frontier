@@ -166,10 +166,10 @@ impl Config for Test {
 	type StateRoot = IntermediateStateRoot;
 }
 
-pub type System = frame_system::Module<Test>;
-pub type Balances = pallet_balances::Module<Test>;
+pub type System = frame_system::Pallet<Test>;
+pub type Balances = pallet_balances::Pallet<Test>;
 pub type Ethereum = Module<Test>;
-pub type Evm = pallet_evm::Module<Test>;
+pub type Evm = pallet_evm::Pallet<Test>;
 
 pub struct AccountInfo {
 	pub address: H160,
