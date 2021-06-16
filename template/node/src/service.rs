@@ -58,11 +58,13 @@ pub fn open_frontier_backend(config: &Configuration) -> Result<Arc<fc_db::Backen
 			BasePath::from_project("", "", &crate::cli::Cli::executable_name())
 				.config_dir(config.chain_spec.id())
 		});
-	let database_dir = config_dir.join("frontier").join("db");
+	config_dir.join("frontier").join("db")
+}
 
+pub fn open_frontier_backend(config: &Configuration) -> Result<Arc<fc_db::Backend<Block>>, String> {
 	Ok(Arc::new(fc_db::Backend::<Block>::new(&fc_db::DatabaseSettings {
 		source: fc_db::DatabaseSettingsSrc::RocksDb {
-			path: database_dir,
+			path: frontier_database_dir(&config),
 			cache_size: 0,
 		}
 	})?))
