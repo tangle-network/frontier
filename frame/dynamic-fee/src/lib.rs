@@ -101,7 +101,7 @@ pub mod pallet {
 	#[pallet::call]
 	impl<T: Config> Pallet<T> {
 		#[pallet::weight(0)]
-		fn note_min_gas_price_target(
+		pub fn note_min_gas_price_target(
 			origin: OriginFor<T>,
 			target: U256,
 		) -> DispatchResultWithPostInfo {
