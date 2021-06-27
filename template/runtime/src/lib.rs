@@ -326,6 +326,8 @@ impl pallet_dynamic_fee::Config for Runtime {
 	type Event = Event;
 }
 
+impl pallet_randomness_collective_flip::Config for Runtime {}
+
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
 	pub enum Runtime where
