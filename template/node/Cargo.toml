@@ -51,6 +51,8 @@ sp-runtime = { git = "https://github.com/webb-tools/substrate.git", branch = "er
 sc-basic-authorship = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
 sp-block-builder = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
 sc-telemetry = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
+frame-benchmarking-cli = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
+frame-benchmarking = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
 
 fc-consensus = { path = "../../client/consensus" }
 fp-consensus = { path = "../../primitives/consensus" }
@@ -68,3 +70,6 @@ substrate-build-script-utils = { git = "https://github.com/webb-tools/substrate.
 default = ["aura"]
 aura = ["frontier-template-runtime/aura"]
 manual-seal = ["frontier-template-runtime/manual-seal"]
+runtime-benchmarks = [
+	"frontier-template-runtime/runtime-benchmarks",
+]

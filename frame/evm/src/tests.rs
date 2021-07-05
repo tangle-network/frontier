@@ -18,6 +18,7 @@
 #![cfg(test)]
 
 use super::*;
+use crate::mock::*;
 
 use std::{str::FromStr, collections::BTreeMap};
 use frame_support::{
