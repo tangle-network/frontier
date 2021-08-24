@@ -51,8 +51,8 @@ sp-version = { version = "3.0.0-dev", default-features = false, git = "https://g
 fp-rpc = { default-features = false, path = "../../primitives/rpc" }
 
 # benchmarking dependencies
-frame-benchmarking = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "frontier", optional = true }
-frame-system-benchmarking = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "frontier", optional = true }
+frame-benchmarking = { git = "https://github.com/webb-tools/substrate", default-features = false, branch = "erup-4", optional = true }
+frame-system-benchmarking = { git = "https://github.com/webb-tools/substrate", default-features = false, branch = "erup-4", optional = true }
 
 [build-dependencies]
 substrate-wasm-builder = { git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
