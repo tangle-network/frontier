@@ -72,6 +72,7 @@ impl frame_system::Config for Test {
 	type Version = ();
 	type PalletInfo = PalletInfo;
 	type AccountData = pallet_balances::AccountData<u64>;
+	type OnSetCode = ();
 	type OnNewAccount = ();
 	type OnKilledAccount = ();
 	type SystemWeightInfo = ();
@@ -119,8 +120,8 @@ impl FindAuthor<H160> for FindAuthorTruncated {
 }
 
 
-type System = frame_system::Module<Test>;
-type Balances = pallet_balances::Module<Test>;
+type System = frame_system::Pallet<Test>;
+type Balances = pallet_balances::Pallet<Test>;
 
 impl Config for Test {
 	type FeeCalculator = FixedGasPrice;
@@ -133,12 +134,11 @@ impl Config for Test {
 	type Currency = Balances;
 	type Runner = crate::runner::stack::Runner<Self>;
 
-	type Event = Event<Test>;
+	type Event = ();
 	type Precompiles = ();
 	type ChainId = ();
 	type BlockGasLimit = ();
 	type OnChargeTransaction = ();
-	type BlockHashMapping = crate::SubstrateBlockHashMapping<Self>;
-	type FindAuthor = FindAuthorTruncated;
+	// type BlockHashMapping = crate::SubstrateBlockHashMapping<Self>;
+	// type FindAuthor = FindAuthorTruncated;
 }
-
