@@ -18,7 +18,7 @@
 //! Test mock for unit tests and benchmarking
 use sp_std::prelude::*;
 use crate::{Config, EnsureAddressNever, EnsureAddressRoot,
-	FeeCalculator, Event, IdentityAddressMapping};
+	FeeCalculator, IdentityAddressMapping};
 use frame_support::{
 	impl_outer_origin, parameter_types, ConsensusEngineId,
 	traits::FindAuthor
