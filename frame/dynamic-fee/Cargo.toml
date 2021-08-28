@@ -10,12 +10,12 @@ license = "Apache-2.0"
 pallet-evm = { path = "../evm", version = "4.0.0-dev", default-features = false }
 codec = { package = "parity-scale-codec", version = "2.0.0", default-features = false }
 serde = { version = "1.0.101", optional = true }
-sp-std = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-sp-core = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-sp-runtime = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-sp-inherents = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-frame-system = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-frame-support = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
+sp-std = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-benchmarking" }
+sp-core = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-benchmarking" }
+sp-runtime = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-benchmarking" }
+sp-inherents = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-benchmarking" }
+frame-system = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-benchmarking" }
+frame-support = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-benchmarking" }
 async-trait = { version = "0.1.48", optional = true }
 
 [features]

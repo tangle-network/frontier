@@ -16,15 +16,15 @@ targets = ["x86_64-unknown-linux-gnu"]
 serde = { version = "1.0.101", optional = true, features = ["derive"] }
 codec = { package = "parity-scale-codec", version = "2.0.0", default-features = false }
 
-frame-support = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-frame-system = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-pallet-timestamp = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-pallet-balances = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-sp-core = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-sp-runtime = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-sp-std = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-sp-io = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4" }
-frame-benchmarking = { version = "3.0.0", git = "https://github.com/webb-tools/substrate.git", branch = "erup-4", default-features = false, optional = true }
+frame-support = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-benchmarking" }
+frame-system = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-benchmarking" }
+pallet-timestamp = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-benchmarking" }
+pallet-balances = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-benchmarking" }
+sp-core = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-benchmarking" }
+sp-runtime = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-benchmarking" }
+sp-std = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-benchmarking" }
+sp-io = { version = "3.0.0", default-features = false, git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-benchmarking" }
+frame-benchmarking = { version = "3.0.0", git = "https://github.com/webb-tools/substrate.git", branch = "erup-4-benchmarking", default-features = false, optional = true }
 
 fp-evm = { version = "2.0.0", default-features = false, path = "../../primitives/evm" }
 primitive-types = { version = "0.9.0", default-features = false, features = ["rlp", "byteorder"] }
