@@ -21,7 +21,7 @@ use super::*;
 use crate::{Module, Config, IntermediateStateRoot};
 use ethereum::{TransactionAction, TransactionSignature};
 use frame_support::{
-	impl_outer_origin, parameter_types, ConsensusEngineId
+	impl_outer_origin, parameter_types, ConsensusEngineId, PalletId
 };
 use pallet_evm::{FeeCalculator, AddressMapping, EnsureAddressTruncated};
 use rlp::*;
@@ -29,7 +29,6 @@ use sp_core::{H160, H256, U256};
 use sp_runtime::{
 	testing::Header,
 	traits::{BlakeTwo256, IdentityLookup},
-	ModuleId,
 };
 use sp_runtime::AccountId32;
 
@@ -82,6 +81,7 @@ impl frame_system::Config for Test {
 	type OnKilledAccount = ();
 	type SystemWeightInfo = ();
 	type SS58Prefix = ();
+	type OnSetCode = ();
 }
 
 parameter_types! {
@@ -131,7 +131,7 @@ impl FindAuthor<H160> for EthereumFindAuthor {
 parameter_types! {
 	pub const TransactionByteFee: u64 = 1;
 	pub const ChainId: u64 = 42;
-	pub const EVMModuleId: ModuleId = ModuleId(*b"py/evmpa");
+	pub const EVMModuleId: PalletId = PalletId(*b"py/evmpa");
 	pub const BlockGasLimit: U256 = U256::MAX;
 }
 
@@ -166,10 +166,10 @@ impl Config for Test {
 	type StateRoot = IntermediateStateRoot;
 }
 
-pub type System = frame_system::Module<Test>;
-pub type Balances = pallet_balances::Module<Test>;
+pub type System = frame_system::Pallet<Test>;
+pub type Balances = pallet_balances::Pallet<Test>;
 pub type Ethereum = Module<Test>;
-pub type Evm = pallet_evm::Module<Test>;
+pub type Evm = pallet_evm::Pallet<Test>;
 
 pub struct AccountInfo {
 	pub address: H160,
