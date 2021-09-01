@@ -82,9 +82,12 @@ benchmarks! {
 		let contract_address = H160::from_slice(&Keccak256::digest(&rlp.out())[12..]);
 
 		// derive encoded contract call -- in this case, just the function selector
-		let mut encoded_call = Vec::new();
+		let mut encoded_call = Vec::with_capacity(5);
 		encoded_call.push(0u8);
 		encoded_call.push(4);
+		encoded_call.push(0u8);
+		encoded_call.push(0u8);
+		encoded_call.push(0u8);
 		encoded_call[0..4].copy_from_slice(&Keccak256::digest(b"infinite()")[0..4]);
 
 		let gas_limit_call = x as u64;
