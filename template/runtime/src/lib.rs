@@ -213,6 +213,7 @@ impl pallet_aura::Config for Runtime {
 impl pallet_grandpa::Config for Runtime {
 	type Event = Event;
 	type Call = Call;
+	type MaxAuthorities = MaxAuthorities;
 
 	type KeyOwnerProofSystem = ();
 
@@ -273,6 +274,7 @@ impl pallet_transaction_payment::Config for Runtime {
 	type OnChargeTransaction = CurrencyAdapter<Balances, ()>;
 	type TransactionByteFee = TransactionByteFee;
 	type WeightToFee = IdentityFee<Balance>;
+	type OperationalFeeMultiplier = ();
 	type FeeMultiplierUpdate = ();
 }
 
