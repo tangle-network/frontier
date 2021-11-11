@@ -18,7 +18,16 @@ version = "0.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3e61f2b7f93d2c7d2b08263acaa4a363b3e276806c68af6134c44f523bf1aacd"
 dependencies = [
- "gimli",
+ "gimli 0.25.0",
+]
+
+[[package]]
+name = "addr2line"
+version = "0.17.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b9ecd88a8c8378ca913a680cd98f0f13ac67383d35993f86c90a70e3f137816b"
+dependencies = [
+ "gimli 0.26.1",
 ]
 
 [[package]]
@@ -29,44 +38,44 @@ checksum = "f26201604c87b1e01bd3d98f8d5d9a8fcbb815e8cedb41ffccbeb4bf593a35fe"
 
 [[package]]
 name = "aead"
-version = "0.4.2"
+version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6e3e798aa0c8239776f54415bc06f3d74b1850f3f830b45c35cfc80556973f70"
+checksum = "0b613b8e1e3cf911a086f53f03bf286f52fd7a7258e4fa606f0ef220d39d8877"
 dependencies = [
  "generic-array 0.14.4",
 ]
 
 [[package]]
 name = "aes"
-version = "0.7.4"
+version = "0.7.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "495ee669413bfbe9e8cace80f4d3d78e6d8c8d99579f97fb93bde351b185f2d4"
+checksum = "9e8b47f52ea9bae42228d07ec09eb676433d7c4ed1ebdf0f1d1c29ed446f1ab8"
 dependencies = [
  "cfg-if 1.0.0",
  "cipher",
- "cpufeatures 0.1.5",
+ "cpufeatures 0.2.1",
  "opaque-debug 0.3.0",
 ]
 
 [[package]]
 name = "aes-gcm"
-version = "0.9.3"
+version = "0.9.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b2a930fd487faaa92a30afa92cc9dd1526a5cff67124abbbb1c617ce070f4dcf"
+checksum = "df5f85a83a7d8b0442b6aa7b504b8212c1733da07b98aae43d4bc21b2cb3cdf6"
 dependencies = [
  "aead",
  "aes",
  "cipher",
  "ctr",
  "ghash",
- "subtle 2.4.1",
+ "subtle",
 ]
 
 [[package]]
 name = "ahash"
-version = "0.7.4"
+version = "0.7.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "43bb833f0bf979d8475d38fbf09ed3b8a55e1885fe93ad3f93239fc6a4f17b98"
+checksum = "fcb51a0695d8f838b1ee009b3fbf66bda078cd64590202a864a8f3e8c4315c47"
 dependencies = [
  "getrandom 0.2.3",
  "once_cell",
@@ -102,9 +111,9 @@ dependencies = [
 
 [[package]]
 name = "anyhow"
-version = "1.0.43"
+version = "1.0.45"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "28ae2b3dec75a406790005a200b1bd89785afc02517a00ca99ecfe093ee9e6cf"
+checksum = "ee10e43ae4a853c0a3591d4e2ada1719e553be18199d9da9d4a83f5927c2f5c7"
 
 [[package]]
 name = "approx"
@@ -138,15 +147,15 @@ checksum = "23b62fc65de8e4e7f52534fb52b0f3ed04746ae267519eef2a83941e8085068b"
 
 [[package]]
 name = "arrayvec"
-version = "0.7.1"
+version = "0.7.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "be4dc07131ffa69b8072d35f5007352af944213cde02545e2103680baed38fcd"
+checksum = "8da52d66c7071e2e3fa2a1e5c6d088fec47b593032b254f5e980de8ea54454d6"
 
 [[package]]
 name = "asn1_der"
-version = "0.7.4"
+version = "0.7.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9d6e24d2cce90c53b948c46271bfb053e4bdc2db9b5d3f65e20f8cf28a1b7fc3"
+checksum = "e22d1f4b888c298a027c99dc9048015fac177587de20fc30232a057dfbe24a21"
 
 [[package]]
 name = "assert_matches"
@@ -209,7 +218,7 @@ dependencies = [
  "parking",
  "polling",
  "slab",
- "socket2 0.4.1",
+ "socket2 0.4.2",
  "waker-fn",
  "winapi 0.3.9",
 ]
@@ -234,9 +243,9 @@ dependencies = [
 
 [[package]]
 name = "async-process"
-version = "1.2.0"
+version = "1.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b21b63ab5a0db0369deb913540af2892750e42d949faacc7a61495ac418a1692"
+checksum = "83137067e3a2a6a06d67168e49e68a0957d215410473a740cea95a2425c0b7c6"
 dependencies = [
  "async-io",
  "blocking",
@@ -314,7 +323,7 @@ version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fb4401f0a3622dad2e0763fa79e0eb328bc70fb7dccfdd645341f00d671247d6"
 dependencies = [
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "futures-sink",
  "futures-util",
  "memchr",
@@ -327,7 +336,7 @@ version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f0de5164e5edbf51c45fb8c2d9664ae1c095cce1b265ecf7569093c0d66ef690"
 dependencies = [
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "futures-sink",
  "futures-util",
  "memchr",
@@ -336,9 +345,9 @@ dependencies = [
 
 [[package]]
 name = "atomic"
-version = "0.5.0"
+version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c3410529e8288c463bedb5930f82833bc0c90e5d2fe639a56582a4d09220b281"
+checksum = "b88d82667eca772c4aa12f0f1348b3ae643424c8876448f3f7bd5787032e234c"
 dependencies = [
  "autocfg",
 ]
@@ -368,16 +377,16 @@ checksum = "cdb031dd78e28731d87d56cc8ffef4a8f36ca26c38fe2de700543e627f8a464a"
 
 [[package]]
 name = "backtrace"
-version = "0.3.61"
+version = "0.3.63"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e7a905d892734eea339e896738c14b9afce22b5318f64b951e70bf3844419b01"
+checksum = "321629d8ba6513061f26707241fa9bc89524ff1cd7a915a97ef0c62c666ce1b6"
 dependencies = [
- "addr2line",
+ "addr2line 0.17.0",
  "cc",
  "cfg-if 1.0.0",
  "libc",
  "miniz_oxide",
- "object 0.26.0",
+ "object",
  "rustc-demangle",
 ]
 
@@ -465,9 +474,9 @@ dependencies = [
 
 [[package]]
 name = "blake2"
-version = "0.9.1"
+version = "0.9.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "10a5720225ef5daecf08657f23791354e1685a8c91a4c60c7f3d3b2892f978f4"
+checksum = "0a4e37d16930f5459780f5621038b6382b9bb37c19016f39fb6b5808d831f174"
 dependencies = [
  "crypto-mac 0.8.0",
  "digest 0.9.0",
@@ -560,9 +569,9 @@ checksum = "8d696c370c750c948ada61c69a0ee2cbbb9c50b1019ddb86d9317157a99c2cae"
 
 [[package]]
 name = "blocking"
-version = "1.0.2"
+version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c5e170dbede1f740736619b776d7251cb1b9095c435c34d8ca9f57fcd2f335e9"
+checksum = "046e47d4b2d391b1f6f8b407b1deb8dee56c1852ccd868becf2710f601b5f427"
 dependencies = [
  "async-channel",
  "async-task",
@@ -580,9 +589,9 @@ checksum = "771fe0050b883fcc3ea2359b1a96bcfbc090b7116eae7c3c512c7a083fdf23d3"
 
 [[package]]
 name = "bstr"
-version = "0.2.16"
+version = "0.2.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "90682c8d613ad3373e66de8c6411e0ae2ab2571e879d2efbf73558cc66f21279"
+checksum = "ba3569f383e8f1598449f1a423e72e99569137b47740b1da11ef19af3d5c3223"
 dependencies = [
  "memchr",
 ]
@@ -598,15 +607,15 @@ dependencies = [
 
 [[package]]
 name = "bumpalo"
-version = "3.7.0"
+version = "3.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9c59e7af012c713f529e7a3ee57ce9b31ddd858d4b512923602f74608b009631"
+checksum = "8f1e260c3a9040a7c19a12468758f4c16f31a81a1fe087482be9570ec864bb6c"
 
 [[package]]
 name = "byte-slice-cast"
-version = "1.0.0"
+version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "65c1bf4a04a88c54f589125563643d773f3254b5c38571395e2b591c693bbc81"
+checksum = "1d30c751592b77c499e7bce34d99d67c2c11bdc0574e9a488ddade14150a4698"
 
 [[package]]
 name = "byte-tools"
@@ -638,9 +647,9 @@ checksum = "0e4cec68f03f32e44924783795810fa50a7035d8c8ebe78580ad7e6c703fba38"
 
 [[package]]
 name = "bytes"
-version = "1.0.1"
+version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b700ce4376041dcd0a327fd0097c41095743c4c8af8887265942faf1100bd040"
+checksum = "c4872d67bab6358e59559027aa3b9157c53d9358c51423c17554809a8858e0f8"
 
 [[package]]
 name = "cache-padded"
@@ -682,9 +691,9 @@ dependencies = [
 
 [[package]]
 name = "cc"
-version = "1.0.69"
+version = "1.0.72"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e70cc2f62c6ce1868963827bd677764c62d07c3d9a3e1fb1177ee1a9ab199eb2"
+checksum = "22a9137b95ea06864e018375b72adfb7db6e6f68cfc8df5a04d00288050485ee"
 dependencies = [
  "jobserver",
 ]
@@ -770,13 +779,13 @@ dependencies = [
 
 [[package]]
 name = "clang-sys"
-version = "1.2.0"
+version = "1.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "853eda514c284c2287f4bf20ae614f8781f40a81d32ecda6e91449304dfe077c"
+checksum = "fa66045b9cb23c2e9c1520732030608b02ee07e5cfaa5a521ec15ded7fa24c90"
 dependencies = [
  "glob",
  "libc",
- "libloading 0.7.0",
+ "libloading 0.7.1",
 ]
 
 [[package]]
@@ -817,9 +826,9 @@ checksum = "6245d59a3e82a7fc217c5828a6692dbc6dfb63a0c8c90495621f7b9d79704a0e"
 
 [[package]]
 name = "core-foundation"
-version = "0.9.1"
+version = "0.9.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0a89e2ae426ea83155dccf10c0fa6b1463ef6d5fcb44cee0b224a408fa640a62"
+checksum = "6888e10551bb93e424d8df1d07f1a8b4fceb0001a3a4b048bfc47554946f47b3"
 dependencies = [
  "core-foundation-sys",
  "libc",
@@ -827,9 +836,9 @@ dependencies = [
 
 [[package]]
 name = "core-foundation-sys"
-version = "0.8.2"
+version = "0.8.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ea221b5284a47e40033bf9b66f35f984ec0ea2931eb03505246cd27a963f981b"
+checksum = "5827cebf4670468b8772dd191856768aedcb1b0278a04f989f7766351917b9dc"
 
 [[package]]
 name = "cpp_demangle"
@@ -877,7 +886,7 @@ dependencies = [
  "cranelift-codegen-meta",
  "cranelift-codegen-shared",
  "cranelift-entity",
- "gimli",
+ "gimli 0.25.0",
  "log",
  "regalloc",
  "smallvec",
@@ -1009,22 +1018,22 @@ checksum = "7a81dae078cea95a014a339291cec439d2f232ebe854a9d672b796c6afafa9b7"
 
 [[package]]
 name = "crypto-mac"
-version = "0.7.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4434400df11d95d556bac068ddfedd482915eb18fe8bea89bc80b6e4b1c179e5"
-dependencies = [
- "generic-array 0.12.4",
- "subtle 1.0.0",
-]
-
-[[package]]
-name = "crypto-mac"
 version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b584a330336237c1eecd3e94266efb216c56ed91225d634cb2991c5f3fd1aeab"
 dependencies = [
  "generic-array 0.14.4",
- "subtle 2.4.1",
+ "subtle",
+]
+
+[[package]]
+name = "crypto-mac"
+version = "0.11.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b1d1a86f49236c215f271d40892d5fc950490551400b02ef360692c29815c714"
+dependencies = [
+ "generic-array 0.14.4",
+ "subtle",
 ]
 
 [[package]]
@@ -1038,9 +1047,9 @@ dependencies = [
 
 [[package]]
 name = "ctor"
-version = "0.1.20"
+version = "0.1.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5e98e2ad1a782e33928b96fc3948e7c355e5af34ba4de7670fe8bac2a3b2006d"
+checksum = "ccc0a48a9b826acdf4028595adc9db92caea352f7af011a3034acd172a52a0aa"
 dependencies = [
  "quote",
  "syn",
@@ -1075,7 +1084,7 @@ dependencies = [
  "byteorder",
  "digest 0.8.1",
  "rand_core 0.5.1",
- "subtle 2.4.1",
+ "subtle",
  "zeroize",
 ]
 
@@ -1088,7 +1097,7 @@ dependencies = [
  "byteorder",
  "digest 0.9.0",
  "rand_core 0.5.1",
- "subtle 2.4.1",
+ "subtle",
  "zeroize",
 ]
 
@@ -1101,7 +1110,7 @@ dependencies = [
  "byteorder",
  "digest 0.9.0",
  "rand_core 0.6.3",
- "subtle 2.4.1",
+ "subtle",
  "zeroize",
 ]
 
@@ -1308,9 +1317,9 @@ checksum = "68b91989ae21441195d7d9b9993a2f9295c7e1a8c96255d8b729accddc124797"
 
 [[package]]
 name = "errno"
-version = "0.2.7"
+version = "0.2.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fa68f2fb9cae9d37c9b2b3584aba698a2e97f72d7aef7b9f7aa71d8b54ce46fe"
+checksum = "f639046355ee4f37944e44f60642c6f3a7efa3cf6b78c78a0d989a8ce6c396a1"
 dependencies = [
  "errno-dragonfly",
  "libc",
@@ -1319,11 +1328,11 @@ dependencies = [
 
 [[package]]
 name = "errno-dragonfly"
-version = "0.1.1"
+version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "14ca354e36190500e1e1fb267c647932382b54053c50b14970856c0b00a35067"
+checksum = "aa68f1b12764fab894d2755d2518754e71b4fd80ecfb822714a1206c2aab39bf"
 dependencies = [
- "gcc",
+ "cc",
  "libc",
 ]
 
@@ -1348,7 +1357,7 @@ version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "81fb916554a4dba293ea69c69ad5653e21d770a9d0c2496b5fa0a1f5a3946d87"
 dependencies = [
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "ethereum-types",
  "hash-db",
  "hash256-std-hasher",
@@ -1649,9 +1658,9 @@ checksum = "398ea4fabe40b9b0d885340a2a991a44c8a645624075ad966d21f88688e2b69e"
 
 [[package]]
 name = "flate2"
-version = "1.0.20"
+version = "1.0.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cd3aec53de10fe96d7d8c565eb17f2c687bb5518a2ec453b5b1252964526abe0"
+checksum = "1e6988e897c1c9c485f43b47a529cef42fde0547f9d8d41a7062518f1d8fc53f"
 dependencies = [
  "cfg-if 1.0.0",
  "crc32fast",
@@ -1669,7 +1678,7 @@ checksum = "3f9eec918d3f24069decb9af1554cad7c880e2da24a9afd88aca000531ab82c1"
 [[package]]
 name = "fork-tree"
 version = "3.0.0"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "parity-scale-codec",
 ]
@@ -1747,7 +1756,7 @@ version = "2.0.0"
 [[package]]
 name = "frame-benchmarking"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -1767,7 +1776,7 @@ dependencies = [
 [[package]]
 name = "frame-benchmarking-cli"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "Inflector",
  "chrono",
@@ -1793,7 +1802,7 @@ dependencies = [
 [[package]]
 name = "frame-executive"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -1808,9 +1817,9 @@ dependencies = [
 
 [[package]]
 name = "frame-metadata"
-version = "14.0.0"
+version = "14.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "96616f82e069102b95a72c87de4c84d2f87ef7f0f20630e78ce3824436483110"
+checksum = "37ed5e5c346de62ca5c184b4325a6600d1eaca210666e4606fe4e449574978d0"
 dependencies = [
  "cfg-if 1.0.0",
  "parity-scale-codec",
@@ -1821,7 +1830,7 @@ dependencies = [
 [[package]]
 name = "frame-support"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "bitflags",
  "frame-metadata",
@@ -1850,7 +1859,7 @@ dependencies = [
 [[package]]
 name = "frame-support-procedural"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "Inflector",
  "frame-support-procedural-tools",
@@ -1862,10 +1871,10 @@ dependencies = [
 [[package]]
 name = "frame-support-procedural-tools"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "frame-support-procedural-tools-derive",
- "proc-macro-crate 1.0.0",
+ "proc-macro-crate 1.1.0",
  "proc-macro2",
  "quote",
  "syn",
@@ -1874,7 +1883,7 @@ dependencies = [
 [[package]]
 name = "frame-support-procedural-tools-derive"
 version = "3.0.0"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1884,7 +1893,7 @@ dependencies = [
 [[package]]
 name = "frame-system"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "frame-support",
  "log",
@@ -1901,7 +1910,7 @@ dependencies = [
 [[package]]
 name = "frame-system-benchmarking"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
@@ -1916,7 +1925,7 @@ dependencies = [
 [[package]]
 name = "frame-system-rpc-runtime-api"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "parity-scale-codec",
  "sp-api",
@@ -2207,12 +2216,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "gcc"
-version = "0.3.55"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8f5f3913fa0bfe7ee1fd8248b6b9f42a5af4b9d65ec2dd2c3c26132b950ecfc2"
-
-[[package]]
 name = "generic-array"
 version = "0.12.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2257,9 +2260,9 @@ dependencies = [
 
 [[package]]
 name = "ghash"
-version = "0.4.3"
+version = "0.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b442c439366184de619215247d24e908912b175e824a530253845ac4c251a5c1"
+checksum = "1583cc1656d7839fd3732b80cf4f38850336cdb9b8ded1cd399ca62958de3c99"
 dependencies = [
  "opaque-debug 0.3.0",
  "polyval",
@@ -2275,6 +2278,12 @@ dependencies = [
  "indexmap",
  "stable_deref_trait",
 ]
+
+[[package]]
+name = "gimli"
+version = "0.26.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "78cc372d058dcf6d5ecd98510e7fbc9e5aec4d21de70f65fea8fecebcd881bd4"
 
 [[package]]
 name = "glob"
@@ -2378,21 +2387,21 @@ checksum = "b07f60793ff0a4d9cef0f18e63b5357e06209987153a64648c972c1e5aff336f"
 
 [[package]]
 name = "hmac"
-version = "0.7.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5dcb5e64cda4c23119ab41ba960d1e170a774c8e4b9d9e6a9bc18aabf5e59695"
-dependencies = [
- "crypto-mac 0.7.0",
- "digest 0.8.1",
-]
-
-[[package]]
-name = "hmac"
 version = "0.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "126888268dcc288495a26bf004b38c5fdbb31682f992c84ceb046a1f0fe38840"
 dependencies = [
  "crypto-mac 0.8.0",
+ "digest 0.9.0",
+]
+
+[[package]]
+name = "hmac"
+version = "0.11.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2a2a2320eb7ec0ebe8da8f744d7812d9fc4cb4d09344ac01898dbcb6a20ae69b"
+dependencies = [
+ "crypto-mac 0.11.1",
  "digest 0.9.0",
 ]
 
@@ -2420,31 +2429,31 @@ dependencies = [
 
 [[package]]
 name = "http"
-version = "0.2.4"
+version = "0.2.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "527e8c9ac747e28542699a951517aa9a6945af506cd1f2e1b53a576c17b6cc11"
+checksum = "1323096b05d41827dadeaee54c9981958c0f94e670bc94ed80037d1a7b8b186b"
 dependencies = [
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "fnv",
  "itoa",
 ]
 
 [[package]]
 name = "http-body"
-version = "0.4.3"
+version = "0.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "399c583b2979440c60be0821a6199eca73bc3c8dcd9d070d75ac726e2c6186e5"
+checksum = "1ff4f84919677303da5f147645dbea6b1881f368d03ac84e1dc09031ebd7b2c6"
 dependencies = [
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "http",
  "pin-project-lite 0.2.7",
 ]
 
 [[package]]
 name = "httparse"
-version = "1.4.1"
+version = "1.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f3a87b616e37e93c22fb19bcd386f02f3af5ea98a25670ad0fce773de23c5e68"
+checksum = "acd94fdbe1d4ff688b67b04eee2e17bd50995534a61539e45adfefb45e5e5503"
 
 [[package]]
 name = "httpdate"
@@ -2463,11 +2472,11 @@ dependencies = [
 
 [[package]]
 name = "hyper"
-version = "0.14.11"
+version = "0.14.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0b61cf2d1aebcf6e6352c97b81dc2244ca29194be1b276f5d8ad5c6330fffb11"
+checksum = "2b91bb1f221b6ea1f1e4371216b70f40748774c2fb5971b450c07773fb92d26b"
 dependencies = [
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "futures-channel",
  "futures-core",
  "futures-util",
@@ -2477,7 +2486,7 @@ dependencies = [
  "httpdate",
  "itoa",
  "pin-project-lite 0.2.7",
- "socket2 0.4.1",
+ "socket2 0.4.2",
  "tokio",
  "tower-service",
  "tracing",
@@ -2525,9 +2534,9 @@ dependencies = [
 
 [[package]]
 name = "if-addrs"
-version = "0.6.5"
+version = "0.6.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "28538916eb3f3976311f5dfbe67b5362d0add1293d0a9cad17debf86f8e3aa48"
+checksum = "2273e421f7c4f0fc99e1934fe4776f59d8df2972f4199d703fc0da9f2a9f73de"
 dependencies = [
  "if-addrs-sys",
  "libc",
@@ -2580,9 +2589,9 @@ dependencies = [
 
 [[package]]
 name = "impl-serde"
-version = "0.3.1"
+version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b47ca4d2b6931707a55fce5cf66aff80e2178c8b63bbb4ecb5695cbc870ddf6f"
+checksum = "4551f042f3438e64dbd6226b20527fc84a6e1fe65688b58746a2f53623f25f5c"
 dependencies = [
  "serde",
 ]
@@ -2611,9 +2620,9 @@ dependencies = [
 
 [[package]]
 name = "instant"
-version = "0.1.10"
+version = "0.1.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bee0328b1209d157ef001c94dd85b4f8f64139adb0eac2659f4b08382b2f474d"
+checksum = "7a5bbe824c507c5da5956355e86a746d82e0e1464f65d862cc5e71da70e94b2c"
 dependencies = [
  "cfg-if 1.0.0",
 ]
@@ -2691,9 +2700,9 @@ dependencies = [
 
 [[package]]
 name = "itoa"
-version = "0.4.7"
+version = "0.4.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dd25036021b0de88a0aff6b850051563c6516d0bf53f8638938edbb9de732736"
+checksum = "b71991ff56294aa922b450139ee08b3bfc70982c6b2c7562771375cf73542dd4"
 
 [[package]]
 name = "jobserver"
@@ -2706,9 +2715,9 @@ dependencies = [
 
 [[package]]
 name = "js-sys"
-version = "0.3.52"
+version = "0.3.55"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ce791b7ca6638aae45be056e068fc756d871eb3b3b10b8efa62d1c9cec616752"
+checksum = "7cc9ffccd38c451a86bf13657df244e9c3f37493cce8e5e21e940963777acc84"
 dependencies = [
  "wasm-bindgen",
 ]
@@ -2818,7 +2827,7 @@ version = "18.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fa4fdea130485b572c39a460d50888beb00afb3e35de23ccd7fad8ff19f0e0d4"
 dependencies = [
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "futures 0.3.17",
  "globset",
  "jsonrpc-core",
@@ -2942,9 +2951,9 @@ dependencies = [
 
 [[package]]
 name = "libloading"
-version = "0.7.0"
+version = "0.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6f84d96438c15fcd6c3f244c8fce01d1e2b9c6b5623e9c711dc9286d8fc92d6a"
+checksum = "c0cf036d15402bea3c5d4de17b3fce76b3e4a56ebc1f577be0e7a72f7c607cf0"
 dependencies = [
  "cfg-if 1.0.0",
  "winapi 0.3.9",
@@ -2963,7 +2972,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9004c06878ef8f3b4b4067e69a140d87ed20bf777287f82223e49713b36ee433"
 dependencies = [
  "atomic",
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "futures 0.3.17",
  "lazy_static",
  "libp2p-core",
@@ -3024,7 +3033,7 @@ dependencies = [
  "sha2 0.9.8",
  "smallvec",
  "thiserror",
- "unsigned-varint 0.7.0",
+ "unsigned-varint 0.7.1",
  "void",
  "zeroize",
 ]
@@ -3081,7 +3090,7 @@ dependencies = [
  "asynchronous-codec 0.6.0",
  "base64 0.13.0",
  "byteorder",
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "fnv",
  "futures 0.3.17",
  "hex_fmt",
@@ -3094,7 +3103,7 @@ dependencies = [
  "regex",
  "sha2 0.9.8",
  "smallvec",
- "unsigned-varint 0.7.0",
+ "unsigned-varint 0.7.1",
  "wasm-timer",
 ]
 
@@ -3122,7 +3131,7 @@ checksum = "50ed78489c87924235665a0ab345b298ee34dff0f7ad62c0ba6608b2144fb75e"
 dependencies = [
  "arrayvec 0.5.2",
  "asynchronous-codec 0.6.0",
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "either",
  "fnv",
  "futures 0.3.17",
@@ -3135,7 +3144,7 @@ dependencies = [
  "sha2 0.9.8",
  "smallvec",
  "uint",
- "unsigned-varint 0.7.0",
+ "unsigned-varint 0.7.1",
  "void",
  "wasm-timer",
 ]
@@ -3157,7 +3166,7 @@ dependencies = [
  "log",
  "rand 0.8.4",
  "smallvec",
- "socket2 0.4.1",
+ "socket2 0.4.2",
  "void",
 ]
 
@@ -3168,7 +3177,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "313d9ea526c68df4425f580024e67a9d3ffd49f2c33de5154b1f5019816f7a99"
 dependencies = [
  "asynchronous-codec 0.6.0",
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "futures 0.3.17",
  "libp2p-core",
  "log",
@@ -3176,7 +3185,7 @@ dependencies = [
  "parking_lot",
  "rand 0.7.3",
  "smallvec",
- "unsigned-varint 0.7.0",
+ "unsigned-varint 0.7.1",
 ]
 
 [[package]]
@@ -3185,7 +3194,7 @@ version = "0.32.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3f1db7212f342b6ba7c981cc40e31f76e9e56cb48e65fa4c142ecaca5839523e"
 dependencies = [
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "curve25519-dalek 3.2.0",
  "futures 0.3.17",
  "lazy_static",
@@ -3223,13 +3232,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "13b4783e5423870b9a5c199f65a7a3bc66d86ab56b2b9beebf3c338d889cf8e4"
 dependencies = [
  "asynchronous-codec 0.6.0",
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "futures 0.3.17",
  "libp2p-core",
  "log",
  "prost 0.8.0",
  "prost-build 0.8.0",
- "unsigned-varint 0.7.0",
+ "unsigned-varint 0.7.1",
  "void",
 ]
 
@@ -3254,7 +3263,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0133f6cfd81cdc16e716de2982e012c62e6b9d4f12e41967b3ee361051c622aa"
 dependencies = [
  "asynchronous-codec 0.6.0",
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "futures 0.3.17",
  "futures-timer 3.0.2",
  "libp2p-core",
@@ -3265,7 +3274,7 @@ dependencies = [
  "prost-build 0.8.0",
  "rand 0.7.3",
  "smallvec",
- "unsigned-varint 0.7.0",
+ "unsigned-varint 0.7.1",
  "void",
  "wasm-timer",
 ]
@@ -3277,7 +3286,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "06cdae44b6821466123af93cbcdec7c9e6ba9534a8af9cdc296446d39416d241"
 dependencies = [
  "async-trait",
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "futures 0.3.17",
  "libp2p-core",
  "libp2p-swarm",
@@ -3286,7 +3295,7 @@ dependencies = [
  "minicbor",
  "rand 0.7.3",
  "smallvec",
- "unsigned-varint 0.7.0",
+ "unsigned-varint 0.7.1",
  "wasm-timer",
 ]
 
@@ -3330,7 +3339,7 @@ dependencies = [
  "libc",
  "libp2p-core",
  "log",
- "socket2 0.4.1",
+ "socket2 0.4.2",
 ]
 
 [[package]]
@@ -3467,7 +3476,7 @@ checksum = "d0f6ab710cec28cef759c5f18671a27dae2a5f952cdaaee1d8e2908cb2478a80"
 dependencies = [
  "crunchy",
  "digest 0.9.0",
- "subtle 2.4.1",
+ "subtle",
 ]
 
 [[package]]
@@ -3478,7 +3487,7 @@ checksum = "5be9b9bb642d8522a44d533eab56c16c738301965504753b03ad1de3425d5451"
 dependencies = [
  "crunchy",
  "digest 0.9.0",
- "subtle 2.4.1",
+ "subtle",
 ]
 
 [[package]]
@@ -3561,9 +3570,9 @@ checksum = "687387ff42ec7ea4f2149035a5675fedb675d26f98db90a1846ac63d3addb5f5"
 
 [[package]]
 name = "lock_api"
-version = "0.4.4"
+version = "0.4.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0382880606dff6d15c9476c416d18690b72742aa7b605bb6dd6ec9030fbf07eb"
+checksum = "712a4d093c9976e24e7dbca41db895dabcbac38eb5f4045393d17a95bdfb1109"
 dependencies = [
  "scopeguard",
 ]
@@ -3783,9 +3792,9 @@ dependencies = [
 
 [[package]]
 name = "mio"
-version = "0.7.13"
+version = "0.7.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8c2bdb6314ec10835cd3293dd268473a835c02b7b352e788be788b3c6ca6bb16"
+checksum = "8067b404fe97c70829f082dec8bcf4f71225d7eaea1d8645349cb76fa06205cc"
 dependencies = [
  "libc",
  "log",
@@ -3847,7 +3856,7 @@ dependencies = [
  "percent-encoding 2.1.0",
  "serde",
  "static_assertions",
- "unsigned-varint 0.7.0",
+ "unsigned-varint 0.7.1",
  "url 2.2.2",
 ]
 
@@ -3889,7 +3898,7 @@ dependencies = [
  "generic-array 0.14.4",
  "multihash-derive",
  "sha2 0.9.8",
- "unsigned-varint 0.7.0",
+ "unsigned-varint 0.7.1",
 ]
 
 [[package]]
@@ -3898,7 +3907,7 @@ version = "0.7.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "424f6e86263cd5294cbd7f1e95746b95aca0e0d66bff31e5a40d6baa87b4aa99"
 dependencies = [
- "proc-macro-crate 1.0.0",
+ "proc-macro-crate 1.1.0",
  "proc-macro-error",
  "proc-macro2",
  "quote",
@@ -3914,16 +3923,16 @@ checksum = "e5ce46fe64a9d73be07dcbe690a38ce1b293be448fd8ce1e6c1b8062c9f72c6a"
 
 [[package]]
 name = "multistream-select"
-version = "0.10.2"
+version = "0.10.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7d91ec0a2440aaff5f78ec35631a7027d50386c6163aa975f7caa0d5da4b6ff8"
+checksum = "56a336acba8bc87c8876f6425407dbbe6c417bf478b22015f8fb0994ef3bc0ab"
 dependencies = [
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "futures 0.3.17",
  "log",
  "pin-project 1.0.8",
  "smallvec",
- "unsigned-varint 0.7.0",
+ "unsigned-varint 0.7.1",
 ]
 
 [[package]]
@@ -4014,7 +4023,7 @@ version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "43db66d1170d347f9a065114077f7dccb00c1b9478c89384490a3425279a4606"
 dependencies = [
- "num-bigint 0.4.2",
+ "num-bigint 0.4.3",
  "num-complex",
  "num-integer",
  "num-iter",
@@ -4035,9 +4044,9 @@ dependencies = [
 
 [[package]]
 name = "num-bigint"
-version = "0.4.2"
+version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "74e768dff5fb39a41b3bcd30bb25cf989706c90d028d1ad71971987aa309d535"
+checksum = "f93ab6289c7b344a8a9f60f88d80aa20032336fe78da341afc91c8a2341fc75f"
 dependencies = [
  "autocfg",
  "num-integer",
@@ -4093,7 +4102,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d41702bd167c2df5520b384281bc111a4b5efcf7fbc4c9c222c815b07e0a6a6a"
 dependencies = [
  "autocfg",
- "num-bigint 0.4.2",
+ "num-bigint 0.4.3",
  "num-integer",
  "num-traits",
 ]
@@ -4116,15 +4125,6 @@ checksum = "05499f3756671c15885fee9034446956fff3f243d6077b91e5767df161f766b3"
 dependencies = [
  "hermit-abi",
  "libc",
-]
-
-[[package]]
-name = "object"
-version = "0.26.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c55827317fb4c08822499848a14237d2874d6f139828893017237e7ab93eb386"
-dependencies = [
- "memchr",
 ]
 
 [[package]]
@@ -4174,7 +4174,7 @@ dependencies = [
 [[package]]
 name = "pallet-aura"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -4190,7 +4190,7 @@ dependencies = [
 [[package]]
 name = "pallet-authorship"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -4205,7 +4205,7 @@ dependencies = [
 [[package]]
 name = "pallet-balances"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
@@ -4410,7 +4410,7 @@ dependencies = [
 [[package]]
 name = "pallet-grandpa"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
@@ -4433,7 +4433,7 @@ dependencies = [
 [[package]]
 name = "pallet-randomness-collective-flip"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -4447,7 +4447,7 @@ dependencies = [
 [[package]]
 name = "pallet-session"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -4468,7 +4468,7 @@ dependencies = [
 [[package]]
 name = "pallet-sudo"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -4482,7 +4482,7 @@ dependencies = [
 [[package]]
 name = "pallet-timestamp"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
@@ -4499,7 +4499,7 @@ dependencies = [
 [[package]]
 name = "pallet-transaction-payment"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -4516,7 +4516,7 @@ dependencies = [
 [[package]]
 name = "pallet-transaction-payment-rpc"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "jsonrpc-core",
  "jsonrpc-core-client",
@@ -4533,7 +4533,7 @@ dependencies = [
 [[package]]
 name = "pallet-transaction-payment-rpc-runtime-api"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "pallet-transaction-payment",
  "parity-scale-codec",
@@ -4566,7 +4566,7 @@ version = "2.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "373b1a4c1338d9cd3d1fa53b3a11bdab5ab6bd80a20f7f7becd76953ae2be909"
 dependencies = [
- "arrayvec 0.7.1",
+ "arrayvec 0.7.2",
  "bitvec 0.20.4",
  "byte-slice-cast",
  "impl-trait-for-tuples",
@@ -4580,7 +4580,7 @@ version = "2.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1557010476e0595c9b568d16dcfb81b93cdeb157612726f5170d31aa707bed27"
 dependencies = [
- "proc-macro-crate 1.0.0",
+ "proc-macro-crate 1.1.0",
  "proc-macro2",
  "quote",
  "syn",
@@ -4608,9 +4608,9 @@ dependencies = [
 
 [[package]]
 name = "parity-util-mem"
-version = "0.10.0"
+version = "0.10.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7ad6f1acec69b95caf435bbd158d486e5a0a44fcf51531e84922c59ff09e8457"
+checksum = "6f4cb4e169446179cbc6b8b6320cc9fca49bd2e94e8db25f25f200a8ea774770"
 dependencies = [
  "cfg-if 1.0.0",
  "ethereum-types",
@@ -4652,9 +4652,9 @@ checksum = "be5e13c266502aadf83426d87d81a0f5d1ef45b8027f5a471c360abfe4bfae92"
 
 [[package]]
 name = "parity-ws"
-version = "0.11.0"
+version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d0ab8a461779bd022964cae2b4989fa9c99deb270bec162da2125ec03c09fcaa"
+checksum = "5983d3929ad50f12c3eb9a6743f19d691866ecd44da74c0a3308c3f8a56df0c6"
 dependencies = [
  "byteorder",
  "bytes 0.4.12",
@@ -4676,9 +4676,9 @@ checksum = "427c3892f9e783d91cc128285287e70a59e206ca452770ece88a76f7a3eddd72"
 
 [[package]]
 name = "parking_lot"
-version = "0.11.1"
+version = "0.11.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6d7744ac029df22dca6284efe4e898991d28e3085c706c972bcd7da4a27a15eb"
+checksum = "7d17b78036a60663b797adeaee46f5c9dfebb86948d1255007a1d6be0271ff99"
 dependencies = [
  "instant",
  "lock_api",
@@ -4687,9 +4687,9 @@ dependencies = [
 
 [[package]]
 name = "parking_lot_core"
-version = "0.8.3"
+version = "0.8.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fa7a782938e745763fe6907fc6ba86946d72f49fe7e21de074e08128a99fb018"
+checksum = "d76e8e1493bcac0d2766c42737f34458f1c8c50c0d23bcb24ea953affb273216"
 dependencies = [
  "cfg-if 1.0.0",
  "instant",
@@ -4701,19 +4701,9 @@ dependencies = [
 
 [[package]]
 name = "paste"
-version = "1.0.5"
+version = "1.0.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "acbf547ad0c65e31259204bd90935776d1c693cec2f4ff7abb7a1bbbd40dfe58"
-
-[[package]]
-name = "pbkdf2"
-version = "0.3.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "006c038a43a45995a9670da19e67600114740e8511d4333bf97a56e66a7542d9"
-dependencies = [
- "byteorder",
- "crypto-mac 0.7.0",
-]
+checksum = "0744126afe1a6dd7f394cb50a716dbe086cb06e255e53d8d0185d82828358fb5"
 
 [[package]]
 name = "pbkdf2"
@@ -4722,6 +4712,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "216eaa586a190f0a738f2f918511eecfa90f13295abec0e457cdebcceda80cbd"
 dependencies = [
  "crypto-mac 0.8.0",
+]
+
+[[package]]
+name = "pbkdf2"
+version = "0.8.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d95f5254224e617595d2cc3cc73ff0a5eaf2637519e25f03388154e9378b6ffa"
+dependencies = [
+ "crypto-mac 0.11.1",
 ]
 
 [[package]]
@@ -4865,9 +4864,9 @@ checksum = "8b870d8c151b6f2fb93e84a13146138f05d02ed11c7e7c54f8826aaaf7c9f184"
 
 [[package]]
 name = "pkg-config"
-version = "0.3.19"
+version = "0.3.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3831453b3449ceb48b6d9c7ad7c96d5ea673e9b470a1dc578c2ce6521230884c"
+checksum = "12295df4f294471248581bc09bef3c38a5e46f1e36d6a37353621a0c6c357e1f"
 
 [[package]]
 name = "platforms"
@@ -4877,9 +4876,9 @@ checksum = "989d43012e2ca1c4a02507c67282691a0a3207f9dc67cec596b43fe925b3d325"
 
 [[package]]
 name = "polling"
-version = "2.1.0"
+version = "2.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "92341d779fa34ea8437ef4d82d440d5e1ce3f3ff7f824aa64424cd481f9a1f25"
+checksum = "685404d509889fade3e86fe3a5803bca2ec09b0c0778d5ada6ec8bf7a8de5259"
 dependencies = [
  "cfg-if 1.0.0",
  "libc",
@@ -4890,32 +4889,32 @@ dependencies = [
 
 [[package]]
 name = "poly1305"
-version = "0.7.1"
+version = "0.7.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9fcffab1f78ebbdf4b93b68c1ffebc24037eedf271edaca795732b24e5e4e349"
+checksum = "048aeb476be11a4b6ca432ca569e375810de9294ae78f4774e78ea98a9246ede"
 dependencies = [
- "cpufeatures 0.1.5",
+ "cpufeatures 0.2.1",
  "opaque-debug 0.3.0",
  "universal-hash",
 ]
 
 [[package]]
 name = "polyval"
-version = "0.5.2"
+version = "0.5.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a6ba6a405ef63530d6cb12802014b22f9c5751bd17cdcddbe9e46d5c8ae83287"
+checksum = "8419d2b623c7c0896ff2d5d96e2cb4ede590fed28fcc34934f4c33c036e620a1"
 dependencies = [
  "cfg-if 1.0.0",
- "cpufeatures 0.1.5",
+ "cpufeatures 0.2.1",
  "opaque-debug 0.3.0",
  "universal-hash",
 ]
 
 [[package]]
 name = "ppv-lite86"
-version = "0.2.10"
+version = "0.2.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ac74c624d6b2d21f425f752262f42188365d7b8ff1aff74c82e45136510a4857"
+checksum = "ed0cfbc8191465bed66e1718596ee0b0b35d5ee1f41c5df2189d0fe8bde535ba"
 
 [[package]]
 name = "primitive-types"
@@ -4942,9 +4941,9 @@ dependencies = [
 
 [[package]]
 name = "proc-macro-crate"
-version = "1.0.0"
+version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "41fdbd1df62156fbc5945f4762632564d7d038153091c3fcf1067f6aef7cff92"
+checksum = "1ebace6889caf889b4d3f76becee12e90353f2b8c7d875534a71e5742f8f6f83"
 dependencies = [
  "thiserror",
  "toml",
@@ -5015,7 +5014,7 @@ version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "de5e2533f59d08fcf364fd374ebda0692a70bd6d7e66ef97f306f45c6c5d8020"
 dependencies = [
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "prost-derive 0.8.0",
 ]
 
@@ -5025,7 +5024,7 @@ version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "444879275cb4fd84958b1a1d5420d15e6fcf7c235fe47f053c9c2a80aceb6001"
 dependencies = [
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "prost-derive 0.9.0",
 ]
 
@@ -5035,7 +5034,7 @@ version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "355f634b43cdd80724ee7848f95770e7e70eefa6dcf14fea676216573b8fd603"
 dependencies = [
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "heck",
  "itertools",
  "log",
@@ -5053,7 +5052,7 @@ version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "62941722fb675d463659e49c4f3fe1fe792ff24fe5bbaa9c08cd3b98a1c354f5"
 dependencies = [
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "heck",
  "itertools",
  "lazy_static",
@@ -5099,7 +5098,7 @@ version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "603bbd6394701d13f3f25aada59c7de9d35a6a5887cfc156181234a44002771b"
 dependencies = [
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "prost 0.8.0",
 ]
 
@@ -5109,24 +5108,24 @@ version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "534b7a0e836e3c482d2693070f982e39e7611da9695d4d1f5a4b186b51faef0a"
 dependencies = [
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "prost 0.9.0",
 ]
 
 [[package]]
 name = "psm"
-version = "0.1.14"
+version = "0.1.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "14ce37fa8c0428a37307d163292add09b3aedc003472e6b3622486878404191d"
+checksum = "cd136ff4382c4753fc061cb9e4712ab2af263376b95bbd5bd8cd50c020b78e69"
 dependencies = [
  "cc",
 ]
 
 [[package]]
 name = "pwasm-utils"
-version = "0.18.1"
+version = "0.18.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f0c1a2f10b47d446372a4f397c58b329aaea72b2daf9395a623a411cb8ccb54f"
+checksum = "880b3384fb00b8f6ecccd5d358b93bd2201900ae3daad213791d1864f6441f5c"
 dependencies = [
  "byteorder",
  "log",
@@ -5243,9 +5242,9 @@ dependencies = [
 
 [[package]]
 name = "rand_distr"
-version = "0.4.1"
+version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "051b398806e42b9cd04ad9ec8f81e355d0a382c543ac6672c62f5a5b452ef142"
+checksum = "964d548f8e7d12e102ef183a0de7e98180c9f8729f555897a857b96e48122d2f"
 dependencies = [
  "num-traits",
  "rand 0.8.4",
@@ -5454,7 +5453,7 @@ version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "999508abb0ae792aabed2460c45b89106d97fe4adac593bdaef433c2605847b5"
 dependencies = [
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "rustc-hex",
 ]
 
@@ -5508,9 +5507,9 @@ dependencies = [
 
 [[package]]
 name = "rustc-demangle"
-version = "0.1.20"
+version = "0.1.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dead70b0b5e03e9c814bcb6b01e03e68f7c57a80aa48c72ec92152ab3e818d49"
+checksum = "7ef03e0a2b150c7a90d01faf6254c9c48a41e95fb2a8c2ac1c6f0d2b9aefc342"
 
 [[package]]
 name = "rustc-hash"
@@ -5623,7 +5622,7 @@ dependencies = [
 [[package]]
 name = "sc-allocator"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "log",
  "sp-core",
@@ -5634,7 +5633,7 @@ dependencies = [
 [[package]]
 name = "sc-basic-authorship"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "futures 0.3.17",
  "futures-timer 3.0.2",
@@ -5657,7 +5656,7 @@ dependencies = [
 [[package]]
 name = "sc-block-builder"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "parity-scale-codec",
  "sc-client-api",
@@ -5673,7 +5672,7 @@ dependencies = [
 [[package]]
 name = "sc-chain-spec"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "impl-trait-for-tuples",
  "memmap2 0.5.0",
@@ -5690,9 +5689,9 @@ dependencies = [
 [[package]]
 name = "sc-chain-spec-derive"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
- "proc-macro-crate 1.0.0",
+ "proc-macro-crate 1.1.0",
  "proc-macro2",
  "quote",
  "syn",
@@ -5701,7 +5700,7 @@ dependencies = [
 [[package]]
 name = "sc-cli"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "chrono",
  "fdlimit",
@@ -5739,7 +5738,7 @@ dependencies = [
 [[package]]
 name = "sc-client-api"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "fnv",
  "futures 0.3.17",
@@ -5767,7 +5766,7 @@ dependencies = [
 [[package]]
 name = "sc-client-db"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "hash-db",
  "kvdb",
@@ -5792,7 +5791,7 @@ dependencies = [
 [[package]]
 name = "sc-consensus"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "async-trait",
  "futures 0.3.17",
@@ -5816,7 +5815,7 @@ dependencies = [
 [[package]]
 name = "sc-consensus-aura"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "async-trait",
  "derive_more",
@@ -5845,7 +5844,7 @@ dependencies = [
 [[package]]
 name = "sc-consensus-babe"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "async-trait",
  "derive_more",
@@ -5888,7 +5887,7 @@ dependencies = [
 [[package]]
 name = "sc-consensus-epochs"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "fork-tree",
  "parity-scale-codec",
@@ -5901,7 +5900,7 @@ dependencies = [
 [[package]]
 name = "sc-consensus-manual-seal"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "assert_matches",
  "async-trait",
@@ -5935,7 +5934,7 @@ dependencies = [
 [[package]]
 name = "sc-consensus-slots"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "async-trait",
  "futures 0.3.17",
@@ -5961,7 +5960,7 @@ dependencies = [
 [[package]]
 name = "sc-executor"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "lazy_static",
  "libsecp256k1 0.6.0",
@@ -5988,7 +5987,7 @@ dependencies = [
 [[package]]
 name = "sc-executor-common"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "derive_more",
  "environmental",
@@ -6006,7 +6005,7 @@ dependencies = [
 [[package]]
 name = "sc-executor-wasmi"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "log",
  "parity-scale-codec",
@@ -6022,7 +6021,7 @@ dependencies = [
 [[package]]
 name = "sc-executor-wasmtime"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "cfg-if 1.0.0",
  "libc",
@@ -6040,7 +6039,7 @@ dependencies = [
 [[package]]
 name = "sc-finality-grandpa"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "async-trait",
  "derive_more",
@@ -6077,7 +6076,7 @@ dependencies = [
 [[package]]
 name = "sc-informant"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "ansi_term 0.12.1",
  "futures 0.3.17",
@@ -6094,7 +6093,7 @@ dependencies = [
 [[package]]
 name = "sc-keystore"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "async-trait",
  "derive_more",
@@ -6109,13 +6108,13 @@ dependencies = [
 [[package]]
 name = "sc-network"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "async-std",
  "async-trait",
  "asynchronous-codec 0.5.0",
  "bitflags",
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "cid",
  "derive_more",
  "either",
@@ -6160,7 +6159,7 @@ dependencies = [
 [[package]]
 name = "sc-network-gossip"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "futures 0.3.17",
  "futures-timer 3.0.2",
@@ -6176,9 +6175,9 @@ dependencies = [
 [[package]]
 name = "sc-offchain"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "fnv",
  "futures 0.3.17",
  "futures-timer 3.0.2",
@@ -6204,7 +6203,7 @@ dependencies = [
 [[package]]
 name = "sc-peerset"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "futures 0.3.17",
  "libp2p",
@@ -6217,7 +6216,7 @@ dependencies = [
 [[package]]
 name = "sc-proposer-metrics"
 version = "0.9.0"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "log",
  "substrate-prometheus-endpoint",
@@ -6226,7 +6225,7 @@ dependencies = [
 [[package]]
 name = "sc-rpc"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "futures 0.3.17",
  "hash-db",
@@ -6257,7 +6256,7 @@ dependencies = [
 [[package]]
 name = "sc-rpc-api"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "futures 0.3.17",
  "jsonrpc-core",
@@ -6282,7 +6281,7 @@ dependencies = [
 [[package]]
 name = "sc-rpc-server"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "futures 0.3.17",
  "jsonrpc-core",
@@ -6299,7 +6298,7 @@ dependencies = [
 [[package]]
 name = "sc-service"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "async-trait",
  "directories",
@@ -6363,7 +6362,7 @@ dependencies = [
 [[package]]
 name = "sc-state-db"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "log",
  "parity-scale-codec",
@@ -6377,7 +6376,7 @@ dependencies = [
 [[package]]
 name = "sc-telemetry"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "chrono",
  "futures 0.3.17",
@@ -6395,7 +6394,7 @@ dependencies = [
 [[package]]
 name = "sc-tracing"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "ansi_term 0.12.1",
  "atty",
@@ -6426,9 +6425,9 @@ dependencies = [
 [[package]]
 name = "sc-tracing-proc-macro"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
- "proc-macro-crate 1.0.0",
+ "proc-macro-crate 1.1.0",
  "proc-macro2",
  "quote",
  "syn",
@@ -6437,7 +6436,7 @@ dependencies = [
 [[package]]
 name = "sc-transaction-pool"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "futures 0.3.17",
  "intervalier",
@@ -6464,7 +6463,7 @@ dependencies = [
 [[package]]
 name = "sc-transaction-pool-api"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "derive_more",
  "futures 0.3.17",
@@ -6478,7 +6477,7 @@ dependencies = [
 [[package]]
 name = "sc-utils"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "futures 0.3.17",
  "futures-timer 3.0.2",
@@ -6506,7 +6505,7 @@ version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baeb2780690380592f86205aa4ee49815feb2acad8c2f59e6dd207148c3f1fcd"
 dependencies = [
- "proc-macro-crate 1.0.0",
+ "proc-macro-crate 1.1.0",
  "proc-macro2",
  "quote",
  "syn",
@@ -6536,7 +6535,7 @@ dependencies = [
  "rand 0.7.3",
  "rand_core 0.5.1",
  "sha2 0.8.2",
- "subtle 2.4.1",
+ "subtle",
  "zeroize",
 ]
 
@@ -6573,9 +6572,9 @@ dependencies = [
 
 [[package]]
 name = "security-framework"
-version = "2.3.1"
+version = "2.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "23a2ac85147a3a11d77ecf1bc7166ec0b92febfa4461c37944e180f319ece467"
+checksum = "525bc1abfda2e1998d152c45cf13e696f76d0a4972310b22fac1658b05df7c87"
 dependencies = [
  "bitflags",
  "core-foundation",
@@ -6586,9 +6585,9 @@ dependencies = [
 
 [[package]]
 name = "security-framework-sys"
-version = "2.3.0"
+version = "2.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7e4effb91b4b8b6fb7732e670b6cee160278ff8e6bf485c7805d9e319d76e284"
+checksum = "a9dd14d83160b528b7bfd66439110573efcfbe281b17fc2ca9f39f550d619c7e"
 dependencies = [
  "core-foundation-sys",
  "libc",
@@ -6645,18 +6644,18 @@ dependencies = [
 
 [[package]]
 name = "serde"
-version = "1.0.127"
+version = "1.0.130"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f03b9878abf6d14e6779d3f24f07b2cfa90352cfec4acc5aab8f1ac7f146fae8"
+checksum = "f12d06de37cf59146fbdecab66aa99f9fe4f78722e3607577a5375d66bd0c913"
 dependencies = [
  "serde_derive",
 ]
 
 [[package]]
 name = "serde_derive"
-version = "1.0.127"
+version = "1.0.130"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a024926d3432516606328597e0f224a51355a493b49fdd67e9209187cbe55ecc"
+checksum = "d7bc1a1ab1961464eae040d96713baa5a724a8152c1222492465b54322ec508b"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -6665,9 +6664,9 @@ dependencies = [
 
 [[package]]
 name = "serde_json"
-version = "1.0.68"
+version = "1.0.69"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0f690853975602e1bfe1ccbf50504d67174e3bcf340f23b5ea9992e0587a52d8"
+checksum = "e466864e431129c7e0d3476b92f20458e5879919a0596c6472738d9fa2d342f8"
 dependencies = [
  "itoa",
  "ryu",
@@ -6688,13 +6687,13 @@ dependencies = [
 
 [[package]]
 name = "sha-1"
-version = "0.9.7"
+version = "0.9.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1a0c8611594e2ab4ebbf06ec7cbbf0a99450b8570e96cbf5188b5d5f6ef18d81"
+checksum = "99cd6713db3cf16b6c84e06321e049a9b9f699826e16096d23bbcc44d15d51a6"
 dependencies = [
  "block-buffer 0.9.0",
  "cfg-if 1.0.0",
- "cpufeatures 0.1.5",
+ "cpufeatures 0.2.1",
  "digest 0.9.0",
  "opaque-debug 0.3.0",
 ]
@@ -6751,24 +6750,24 @@ dependencies = [
 
 [[package]]
 name = "sharded-slab"
-version = "0.1.3"
+version = "0.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "740223c51853f3145fe7c90360d2d4232f2b62e3449489c207eccde818979982"
+checksum = "900fba806f70c630b0a382d0d825e17a0f19fcd059a2ade1ff237bcddf446b31"
 dependencies = [
  "lazy_static",
 ]
 
 [[package]]
 name = "shlex"
-version = "1.0.0"
+version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "42a568c8f2cd051a4d283bd6eb0343ac214c1b0f1ac19f93e1175b2dee38c73d"
+checksum = "43b2853a4d09f215c24cc5489c992ce46052d359b5109343cbafbf26bc62f8a3"
 
 [[package]]
 name = "signal-hook"
-version = "0.3.9"
+version = "0.3.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "470c5a6397076fae0094aaf06a08e6ba6f37acb77d3b1b91ea92b4d6c8650c39"
+checksum = "9c98891d737e271a2954825ef19e46bd16bdb98e2746f2eec4f7a4ef7946efd1"
 dependencies = [
  "libc",
  "signal-hook-registry",
@@ -6785,9 +6784,9 @@ dependencies = [
 
 [[package]]
 name = "signature"
-version = "1.3.1"
+version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c19772be3c4dd2ceaacf03cb41d5885f2a02c4d8804884918e3a258480803335"
+checksum = "02658e48d89f2bec991f9a78e69cfa4c316f8d6a6c4ec12fae1aeb263d486788"
 
 [[package]]
 name = "simba"
@@ -6803,9 +6802,9 @@ dependencies = [
 
 [[package]]
 name = "slab"
-version = "0.4.4"
+version = "0.4.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c307a32c1c5c437f38c7fd45d753050587732ba8628319fbdf12a7e289ccc590"
+checksum = "9def91fd1e018fe007022791f865d0ccc9b3a0d5001e01aabb8b40e46000afb5"
 
 [[package]]
 name = "smallvec"
@@ -6833,7 +6832,7 @@ dependencies = [
  "ring",
  "rustc_version 0.3.3",
  "sha2 0.9.8",
- "subtle 2.4.1",
+ "subtle",
  "x25519-dalek",
 ]
 
@@ -6850,9 +6849,9 @@ dependencies = [
 
 [[package]]
 name = "socket2"
-version = "0.4.1"
+version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "765f090f0e423d2b55843402a07915add955e7d60657db13707a159727326cad"
+checksum = "5dc90fe6c7be1a323296982db1836d1ea9e47b6839496dde9a541bc496df3516"
 dependencies = [
  "libc",
  "winapi 0.3.9",
@@ -6871,13 +6870,13 @@ dependencies = [
  "httparse",
  "log",
  "rand 0.7.3",
- "sha-1 0.9.7",
+ "sha-1 0.9.8",
 ]
 
 [[package]]
 name = "sp-api"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "hash-db",
  "log",
@@ -6894,10 +6893,10 @@ dependencies = [
 [[package]]
 name = "sp-api-proc-macro"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "blake2-rfc",
- "proc-macro-crate 1.0.0",
+ "proc-macro-crate 1.1.0",
  "proc-macro2",
  "quote",
  "syn",
@@ -6906,7 +6905,7 @@ dependencies = [
 [[package]]
 name = "sp-application-crypto"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "parity-scale-codec",
  "scale-info",
@@ -6919,7 +6918,7 @@ dependencies = [
 [[package]]
 name = "sp-arithmetic"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "integer-sqrt",
  "num-traits",
@@ -6934,7 +6933,7 @@ dependencies = [
 [[package]]
 name = "sp-authorship"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "async-trait",
  "parity-scale-codec",
@@ -6946,7 +6945,7 @@ dependencies = [
 [[package]]
 name = "sp-block-builder"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "parity-scale-codec",
  "sp-api",
@@ -6958,7 +6957,7 @@ dependencies = [
 [[package]]
 name = "sp-blockchain"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "futures 0.3.17",
  "log",
@@ -6976,7 +6975,7 @@ dependencies = [
 [[package]]
 name = "sp-consensus"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "async-trait",
  "futures 0.3.17",
@@ -6995,7 +6994,7 @@ dependencies = [
 [[package]]
 name = "sp-consensus-aura"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "async-trait",
  "parity-scale-codec",
@@ -7013,7 +7012,7 @@ dependencies = [
 [[package]]
 name = "sp-consensus-babe"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "async-trait",
  "merlin",
@@ -7036,7 +7035,7 @@ dependencies = [
 [[package]]
 name = "sp-consensus-slots"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "parity-scale-codec",
  "scale-info",
@@ -7048,7 +7047,7 @@ dependencies = [
 [[package]]
 name = "sp-consensus-vrf"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "parity-scale-codec",
  "schnorrkel",
@@ -7060,7 +7059,7 @@ dependencies = [
 [[package]]
 name = "sp-core"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "base58",
  "bitflags",
@@ -7108,7 +7107,7 @@ dependencies = [
 [[package]]
 name = "sp-core-hashing"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "blake2-rfc",
  "byteorder",
@@ -7121,7 +7120,7 @@ dependencies = [
 [[package]]
 name = "sp-core-hashing-proc-macro"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -7132,7 +7131,7 @@ dependencies = [
 [[package]]
 name = "sp-database"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "kvdb",
  "parking_lot",
@@ -7141,7 +7140,7 @@ dependencies = [
 [[package]]
 name = "sp-debug-derive"
 version = "3.0.0"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -7151,7 +7150,7 @@ dependencies = [
 [[package]]
 name = "sp-externalities"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "environmental",
  "parity-scale-codec",
@@ -7162,7 +7161,7 @@ dependencies = [
 [[package]]
 name = "sp-finality-grandpa"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "finality-grandpa",
  "log",
@@ -7180,7 +7179,7 @@ dependencies = [
 [[package]]
 name = "sp-inherents"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "async-trait",
  "impl-trait-for-tuples",
@@ -7194,7 +7193,7 @@ dependencies = [
 [[package]]
 name = "sp-io"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "futures 0.3.17",
  "hash-db",
@@ -7218,7 +7217,7 @@ dependencies = [
 [[package]]
 name = "sp-keyring"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "lazy_static",
  "sp-core",
@@ -7229,7 +7228,7 @@ dependencies = [
 [[package]]
 name = "sp-keystore"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "async-trait",
  "derive_more",
@@ -7246,7 +7245,7 @@ dependencies = [
 [[package]]
 name = "sp-maybe-compressed-blob"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "zstd",
 ]
@@ -7254,7 +7253,7 @@ dependencies = [
 [[package]]
 name = "sp-offchain"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "sp-api",
  "sp-core",
@@ -7264,7 +7263,7 @@ dependencies = [
 [[package]]
 name = "sp-panic-handler"
 version = "3.0.0"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "backtrace",
  "lazy_static",
@@ -7274,7 +7273,7 @@ dependencies = [
 [[package]]
 name = "sp-rpc"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "rustc-hash",
  "serde",
@@ -7284,7 +7283,7 @@ dependencies = [
 [[package]]
 name = "sp-runtime"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "either",
  "hash256-std-hasher",
@@ -7306,7 +7305,7 @@ dependencies = [
 [[package]]
 name = "sp-runtime-interface"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "impl-trait-for-tuples",
  "parity-scale-codec",
@@ -7323,10 +7322,10 @@ dependencies = [
 [[package]]
 name = "sp-runtime-interface-proc-macro"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "Inflector",
- "proc-macro-crate 1.0.0",
+ "proc-macro-crate 1.1.0",
  "proc-macro2",
  "quote",
  "syn",
@@ -7335,7 +7334,7 @@ dependencies = [
 [[package]]
 name = "sp-serializer"
 version = "3.0.0"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "serde",
  "serde_json",
@@ -7344,7 +7343,7 @@ dependencies = [
 [[package]]
 name = "sp-session"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "parity-scale-codec",
  "scale-info",
@@ -7358,7 +7357,7 @@ dependencies = [
 [[package]]
 name = "sp-staking"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "parity-scale-codec",
  "scale-info",
@@ -7369,7 +7368,7 @@ dependencies = [
 [[package]]
 name = "sp-state-machine"
 version = "0.10.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "hash-db",
  "log",
@@ -7392,12 +7391,12 @@ dependencies = [
 [[package]]
 name = "sp-std"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 
 [[package]]
 name = "sp-storage"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "impl-serde",
  "parity-scale-codec",
@@ -7410,7 +7409,7 @@ dependencies = [
 [[package]]
 name = "sp-tasks"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "log",
  "sp-core",
@@ -7423,7 +7422,7 @@ dependencies = [
 [[package]]
 name = "sp-timestamp"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "async-trait",
  "futures-timer 3.0.2",
@@ -7439,7 +7438,7 @@ dependencies = [
 [[package]]
 name = "sp-tracing"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "parity-scale-codec",
  "sp-std",
@@ -7451,7 +7450,7 @@ dependencies = [
 [[package]]
 name = "sp-transaction-pool"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "sp-api",
  "sp-runtime",
@@ -7460,7 +7459,7 @@ dependencies = [
 [[package]]
 name = "sp-transaction-storage-proof"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "async-trait",
  "log",
@@ -7476,7 +7475,7 @@ dependencies = [
 [[package]]
 name = "sp-trie"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "hash-db",
  "memory-db",
@@ -7491,7 +7490,7 @@ dependencies = [
 [[package]]
 name = "sp-version"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "impl-serde",
  "parity-scale-codec",
@@ -7507,7 +7506,7 @@ dependencies = [
 [[package]]
 name = "sp-version-proc-macro"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "parity-scale-codec",
  "proc-macro2",
@@ -7518,7 +7517,7 @@ dependencies = [
 [[package]]
 name = "sp-wasm-interface"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "impl-trait-for-tuples",
  "parity-scale-codec",
@@ -7579,9 +7578,9 @@ checksum = "8ea5119cdb4c55b55d432abb513a0429384878c15dde60cc77b1c99de1a95a6a"
 
 [[package]]
 name = "structopt"
-version = "0.3.22"
+version = "0.3.25"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "69b041cdcb67226aca307e6e7be44c8806423d83e018bd662360a93dabce4d71"
+checksum = "40b9788f4202aa75c240ecc9c15c65185e6a39ccdeb0fd5d008b98825464c87c"
 dependencies = [
  "clap",
  "lazy_static",
@@ -7590,9 +7589,9 @@ dependencies = [
 
 [[package]]
 name = "structopt-derive"
-version = "0.4.15"
+version = "0.4.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7813934aecf5f51a54775e00068c237de98489463968231a51746bbbc03f9c10"
+checksum = "dcb5ae327f9cc13b68763b5749770cb9e048a99bd9dfdfa58d0cf05d5f64afe0"
 dependencies = [
  "heck",
  "proc-macro-error",
@@ -7624,14 +7623,14 @@ dependencies = [
 
 [[package]]
 name = "substrate-bip39"
-version = "0.4.2"
+version = "0.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bed6646a0159b9935b5d045611560eeef842b78d7adc3ba36f5ca325a13a0236"
+checksum = "49eee6965196b32f882dd2ee85a92b1dbead41b04e53907f269de3b0dc04733c"
 dependencies = [
- "hmac 0.7.1",
- "pbkdf2 0.3.0",
+ "hmac 0.11.0",
+ "pbkdf2 0.8.0",
  "schnorrkel",
- "sha2 0.8.2",
+ "sha2 0.9.8",
  "zeroize",
 ]
 
@@ -7651,7 +7650,7 @@ dependencies = [
 [[package]]
 name = "substrate-build-script-utils"
 version = "3.0.0"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "platforms",
 ]
@@ -7659,7 +7658,7 @@ dependencies = [
 [[package]]
 name = "substrate-frame-rpc-system"
 version = "4.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "frame-system-rpc-runtime-api",
  "futures 0.3.17",
@@ -7681,7 +7680,7 @@ dependencies = [
 [[package]]
 name = "substrate-prometheus-endpoint"
 version = "0.9.0"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "async-std",
  "derive_more",
@@ -7695,7 +7694,7 @@ dependencies = [
 [[package]]
 name = "substrate-wasm-builder"
 version = "5.0.0-dev"
-source = "git+https://github.com/webb-tools/substrate?branch=erup-5#cc789d4f32f093bd5ca6d1f5b3957f06f45d4876"
+source = "git+https://github.com/webb-tools/substrate?branch=erup-5#28f4cad182df98618a451e5771779f59cd89a830"
 dependencies = [
  "ansi_term 0.12.1",
  "build-helper",
@@ -7706,12 +7705,6 @@ dependencies = [
  "walkdir",
  "wasm-gc-api",
 ]
-
-[[package]]
-name = "subtle"
-version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2d67a5a62ba6e01cb2192ff309324cb4875d0c451d55fe2319433abe7a05a8ee"
 
 [[package]]
 name = "subtle"
@@ -7732,9 +7725,9 @@ dependencies = [
 
 [[package]]
 name = "synstructure"
-version = "0.12.5"
+version = "0.12.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "474aaa926faa1603c40b7885a9eaea29b444d1cb2850cb7c0e37bb1a4182f4fa"
+checksum = "f36bdaa60a83aca3921b5259d5400cbf5e90fc51931376a9bd4a0eb79aa7210f"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -7750,9 +7743,9 @@ checksum = "55937e1799185b12863d447f42597ed69d9928686b8d88a1df17376a097d8369"
 
 [[package]]
 name = "target-lexicon"
-version = "0.12.1"
+version = "0.12.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b0652da4c4121005e9ed22b79f6c5f2d9e2752906b53a33e9490489ba421a6fb"
+checksum = "d9bffcddbc2458fa3e6058414599e3c838a022abae82e5c67b4f7f80298d5bff"
 
 [[package]]
 name = "tempfile"
@@ -7788,18 +7781,18 @@ dependencies = [
 
 [[package]]
 name = "thiserror"
-version = "1.0.26"
+version = "1.0.30"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "93119e4feac1cbe6c798c34d3a53ea0026b0b1de6a120deef895137c0529bfe2"
+checksum = "854babe52e4df1653706b98fcfc05843010039b406875930a70e4d9644e5c417"
 dependencies = [
  "thiserror-impl",
 ]
 
 [[package]]
 name = "thiserror-impl"
-version = "1.0.26"
+version = "1.0.30"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "060d69a0afe7796bf42e9e2ff91f5ee691fb15c53d38b4b62a9a53eb23164745"
+checksum = "aa32fd3f627f367fe16f893e2597ae3c05020f8bba2666a4e6ea73d377e5714b"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -7865,9 +7858,9 @@ dependencies = [
 
 [[package]]
 name = "tinyvec"
-version = "1.3.1"
+version = "1.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "848a1e1181b9f6753b5e96a092749e29b11d19ede67dfbbd6c7dc7e0f49b5338"
+checksum = "2c1c1d5a42b6245520c249549ec267180beaffcc0615401ac8e31853d4b6d8d2"
 dependencies = [
  "tinyvec_macros",
 ]
@@ -7880,15 +7873,15 @@ checksum = "cda74da7e1a664f795bb1f8a87ec406fb89a02522cf6e50620d016add6dbbf5c"
 
 [[package]]
 name = "tokio"
-version = "1.10.0"
+version = "1.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "01cf844b23c6131f624accf65ce0e4e9956a8bb329400ea5bcc26ae3a5c20b0b"
+checksum = "588b2d10a336da58d877567cd8fb8a14b463e2104910f8132cd054b4b96e29ee"
 dependencies = [
  "autocfg",
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "libc",
  "memchr",
- "mio 0.7.13",
+ "mio 0.7.14",
  "num_cpus",
  "once_cell",
  "pin-project-lite 0.2.7",
@@ -7909,9 +7902,9 @@ dependencies = [
 
 [[package]]
 name = "tokio-stream"
-version = "0.1.7"
+version = "0.1.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7b2f3f698253f03119ac0102beaa64f67a67e08074d03a22d18784104543727f"
+checksum = "50145484efff8818b5ccd256697f36863f587da82cf8b409c53adf1e840798e3"
 dependencies = [
  "futures-core",
  "pin-project-lite 0.2.7",
@@ -7920,11 +7913,11 @@ dependencies = [
 
 [[package]]
 name = "tokio-util"
-version = "0.6.7"
+version = "0.6.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1caa0b0c8d94a049db56b5acf8cba99dc0623aab1b26d5b5f5e2d945846b3592"
+checksum = "9e99e1983e5d376cd8eb4b66604d2e99e79f5bd988c3055891dcd8c9e2604cc0"
 dependencies = [
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "futures-core",
  "futures-sink",
  "log",
@@ -8133,9 +8126,9 @@ dependencies = [
 
 [[package]]
 name = "typenum"
-version = "1.13.0"
+version = "1.14.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "879f6906492a7cd215bfa4cf595b600146ccfac0c79bcbd1f3000162af5e8b06"
+checksum = "b63708a265f51345575b27fe43f9500ad611579e764c79edbc2037b1121959ec"
 
 [[package]]
 name = "ucd-trie"
@@ -8166,9 +8159,9 @@ dependencies = [
 
 [[package]]
 name = "unicode-bidi"
-version = "0.3.6"
+version = "0.3.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "246f4c42e67e7a4e3c6106ff716a5d067d4132a642840b242e357e468a2a0085"
+checksum = "1a01404663e3db436ed2746d9fefef640d868edae3cceb81c3b8d5732fda678f"
 
 [[package]]
 name = "unicode-normalization"
@@ -8187,9 +8180,9 @@ checksum = "8895849a949e7845e06bd6dc1aa51731a103c42707010a5b591c0038fb73385b"
 
 [[package]]
 name = "unicode-width"
-version = "0.1.8"
+version = "0.1.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9337591893a19b88d8d87f2cec1e73fad5cdfd10e5a6f349f498ad6ea2ffb1e3"
+checksum = "3ed742d4ea2bd1176e236172c8429aaf54486e7ac098db29ffe6529e0ce50973"
 
 [[package]]
 name = "unicode-xid"
@@ -8204,7 +8197,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9f214e8f697e925001e66ec2c6e37a4ef93f0f78c2eed7814394e10c62025b05"
 dependencies = [
  "generic-array 0.14.4",
- "subtle 2.4.1",
+ "subtle",
 ]
 
 [[package]]
@@ -8220,19 +8213,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "35581ff83d4101e58b582e607120c7f5ffb17e632a980b1f38334d76b36908b2"
 dependencies = [
  "asynchronous-codec 0.5.0",
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "futures-io",
  "futures-util",
 ]
 
 [[package]]
 name = "unsigned-varint"
-version = "0.7.0"
+version = "0.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5f8d425fafb8cd76bc3f22aace4af471d3156301d7508f2107e98fbeae10bc7f"
+checksum = "d86a8dc7f45e4c1b0d30e43038c38f274e77af056aa5f74b93c2cf9eb3c1c836"
 dependencies = [
  "asynchronous-codec 0.6.0",
- "bytes 1.0.1",
+ "bytes 1.1.0",
  "futures-io",
  "futures-util",
 ]
@@ -8268,9 +8261,9 @@ dependencies = [
 
 [[package]]
 name = "value-bag"
-version = "1.0.0-alpha.7"
+version = "1.0.0-alpha.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dd320e1520f94261153e96f7534476ad869c14022aee1e59af7c778075d840ae"
+checksum = "79923f7731dc61ebfba3633098bf3ac533bbd35ccd8c57e7088d9a5eebe0263f"
 dependencies = [
  "ctor",
  "version_check",
@@ -8341,9 +8334,9 @@ checksum = "1a143597ca7c7793eff794def352d41792a93c481eb1042423ff7ff72ba2c31f"
 
 [[package]]
 name = "wasm-bindgen"
-version = "0.2.75"
+version = "0.2.78"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b608ecc8f4198fe8680e2ed18eccab5f0cd4caaf3d83516fa5fb2e927fda2586"
+checksum = "632f73e236b219150ea279196e54e610f5dbafa5d61786303d4da54f84e47fce"
 dependencies = [
  "cfg-if 1.0.0",
  "wasm-bindgen-macro",
@@ -8351,9 +8344,9 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-backend"
-version = "0.2.75"
+version = "0.2.78"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "580aa3a91a63d23aac5b6b267e2d13cb4f363e31dce6c352fca4752ae12e479f"
+checksum = "a317bf8f9fba2476b4b2c85ef4c4af8ff39c3c7f0cdfeed4f82c34a880aa837b"
 dependencies = [
  "bumpalo",
  "lazy_static",
@@ -8366,9 +8359,9 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-futures"
-version = "0.4.25"
+version = "0.4.28"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "16646b21c3add8e13fdb8f20172f8a28c3dbf62f45406bcff0233188226cfe0c"
+checksum = "8e8d7523cb1f2a4c96c1317ca690031b714a51cc14e05f712446691f413f5d39"
 dependencies = [
  "cfg-if 1.0.0",
  "js-sys",
@@ -8378,9 +8371,9 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-macro"
-version = "0.2.75"
+version = "0.2.78"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "171ebf0ed9e1458810dfcb31f2e766ad6b3a89dbda42d8901f2b268277e5f09c"
+checksum = "d56146e7c495528bf6587663bea13a8eb588d39b36b679d83972e1a2dbbdacf9"
 dependencies = [
  "quote",
  "wasm-bindgen-macro-support",
@@ -8388,9 +8381,9 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-macro-support"
-version = "0.2.75"
+version = "0.2.78"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6c2657dd393f03aa2a659c25c6ae18a13a4048cebd220e147933ea837efc589f"
+checksum = "7803e0eea25835f8abdc585cd3021b3deb11543c6fe226dcd30b228857c5c5ab"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -8401,9 +8394,9 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-shared"
-version = "0.2.75"
+version = "0.2.78"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2e0c4a743a309662d45f4ede961d7afa4ba4131a59a639f29b0069c3798bbcc2"
+checksum = "0237232789cf037d5480773fe568aac745bfe2afbc11a863e97901780a6b47cc"
 
 [[package]]
 name = "wasm-gc-api"
@@ -8448,9 +8441,9 @@ dependencies = [
 
 [[package]]
 name = "wasmi-validation"
-version = "0.4.0"
+version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a2eb8e860796d8be48efef530b60eebf84e74a88bce107374fffb0da97d504b8"
+checksum = "165343ecd6c018fc09ebcae280752702c9a2ef3e6f8d02f1cfcbdb53ef6d7937"
 dependencies = [
  "parity-wasm 0.42.2",
 ]
@@ -8476,7 +8469,7 @@ dependencies = [
  "lazy_static",
  "libc",
  "log",
- "object 0.27.1",
+ "object",
  "paste",
  "psm",
  "rayon",
@@ -8525,10 +8518,10 @@ dependencies = [
  "cranelift-frontend",
  "cranelift-native",
  "cranelift-wasm",
- "gimli",
+ "gimli 0.25.0",
  "log",
  "more-asserts",
- "object 0.27.1",
+ "object",
  "target-lexicon",
  "thiserror",
  "wasmparser",
@@ -8544,11 +8537,11 @@ dependencies = [
  "anyhow",
  "cfg-if 1.0.0",
  "cranelift-entity",
- "gimli",
+ "gimli 0.25.0",
  "indexmap",
  "log",
  "more-asserts",
- "object 0.27.1",
+ "object",
  "serde",
  "target-lexicon",
  "thiserror",
@@ -8562,14 +8555,14 @@ version = "0.31.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "864ac8dfe4ce310ac59f16fdbd560c257389cb009ee5d030ac6e30523b023d11"
 dependencies = [
- "addr2line",
+ "addr2line 0.16.0",
  "anyhow",
  "bincode",
  "cfg-if 1.0.0",
- "gimli",
+ "gimli 0.25.0",
  "log",
  "more-asserts",
- "object 0.27.1",
+ "object",
  "region",
  "rsix",
  "serde",
@@ -8620,9 +8613,9 @@ dependencies = [
 
 [[package]]
 name = "web-sys"
-version = "0.3.52"
+version = "0.3.55"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "01c70a82d842c9979078c772d4a1344685045f1a5628f677c2b2eab4dd7d2696"
+checksum = "38eb105f1c59d9eaa6b5cdc92b859d85b926e82cb2e0945cd0c9259faa6fe9fb"
 dependencies = [
  "js-sys",
  "wasm-bindgen",
@@ -8768,18 +8761,18 @@ dependencies = [
 
 [[package]]
 name = "zeroize"
-version = "1.4.2"
+version = "1.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bf68b08513768deaa790264a7fac27a58cbf2705cfcdc9448362229217d7e970"
+checksum = "d68d9dcec5f9b43a30d38c49f91dfedfaac384cb8f085faca366c26207dd1619"
 dependencies = [
  "zeroize_derive",
 ]
 
 [[package]]
 name = "zeroize_derive"
-version = "1.1.0"
+version = "1.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a2c1e130bebaeab2f23886bf9acbaca14b092408c452543c857f66399cd6dab1"
+checksum = "65f1a51723ec88c66d5d1fe80c841f17f63587d6691901d66be9bec6c3b51f73"
 dependencies = [
  "proc-macro2",
  "quote",
